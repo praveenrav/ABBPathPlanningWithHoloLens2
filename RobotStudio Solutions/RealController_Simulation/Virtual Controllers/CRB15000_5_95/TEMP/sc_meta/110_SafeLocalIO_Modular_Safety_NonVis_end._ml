@@ -1,0 +1,4 @@
+    <FuncIO name="DriveEnable"                  offset="0"   width="1" direction="output" visible="false" readonly="true" />
+    <FuncIO name="EmergencyStopActivated"       offset="1"   width="1" direction="output" visible="false" readonly="true" />
+  </Device>
+</Net>

@@ -1,0 +1,272 @@
+MODULE PointTraversal
+    PERS tooldata gripper := [TRUE, [[0,0,250],[1,0,0,0]],[1.25,[0,0,90],[1,0,0,0],0,0,0]];    
+
+    CONST robtarget Target_10:=[[780.445401809,0,695.429338613],[0.190808996,0,0.981627183,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_20:=[[780.445394977,-112.547089741,695.429341283],[0.190808995,-0.000000024,0.981627184,0],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+
+    PERS pos tgPos{100};    ! Position array containing all Cartesian positions inputted by user
+    PERS orient tgRot{100};
+    VAR num targetsNum;    ! Total number of targets within the position array
+    
+    VAR num ptpIndex:=1; ! Represents the index of the NEXT point to traverse to
+    VAR robtarget initialPosPTP;
+    VAR bool isFirst:=FALSE;
+    VAR bool isCleared:=TRUE;
+    
+    VAR robtarget nextRobTarget;
+    VAR bool isTargetViableF:=FALSE;
+    VAR bool goForward:=FALSE;
+
+    VAR robtarget lastRobTarget;    
+    VAR bool isTargetViableB:=FALSE;
+    VAR bool goBackward:=FALSE;
+
+    VAR bool completeTraversal:=FALSE;
+    VAR bool isNextPointViable_CPT:=FALSE;
+    VAR bool whileLoopCPT := TRUE;
+
+    VAR bool completeTraversalBack:=FALSE;
+    VAR bool isNextPointViable_CPTB:=FALSE;
+    VAR robtarget nextRobTarg_CPTB;
+    VAR bool whileLoopCPTB := TRUE;
+    
+    VAR bool changeTCPOrient:=FALSE;
+    VAR robtarget curRobTarget;
+    VAR bool isRotationViable:=FALSE;
+    
+    VAR bool isHomePosReset:=FALSE;
+    
+    VAR string speedStr;    ! Speed parameter
+    VAR string zoneStr;    ! Zone parameter
+    VAR string moveCommand;    ! Move behavior (MoveJ vs MoveL vs etc.)
+    VAR jointtarget curJointPos;    ! Contains the corresponding joint angles for each given robtarget
+    VAR errnum errJoint;    ! Contains the error message (if any) produced by CalcJointT()
+
+    FUNC robtarget create_robtarget(pos position, orient rotation)
+        RETURN [position,rotation,[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+        !RETURN [position,[0.190808996,0,0.981627183,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    ENDFUNC
+
+    FUNC bool checkPointViability(robtarget cur_robtarget)
+        ! cur_robtarget - The next robtarget to potentially travel to
+
+        VAR jointtarget curJointPos;
+        ! Contains the corresponding joint angles for each given robtarget
+        VAR errnum errJoint;
+        ! Contains the error message (if any) produced by CalcJointT()
+        VAR bool isTargetViable:=TRUE;
+        ! Boolean indicating target viability (specific to the function only, not the global variable)
+
+        curJointPos:=CalcJointT(cur_robtarget,gripper\WObj:=wobj0\ErrorNumber:=errJoint);
+
+        ! Tests to see if current robtarget is within the joint limits of the robot:
+        IF errJoint=ERR_ROBLIMIT THEN
+            isTargetViable:=FALSE;
+        ELSEIF errJoint=ERR_OUTSIDE_REACH THEN
+            isTargetViable:=FALSE;
+        ELSEIF errJoint=ERR_WOBJ_MOVING THEN
+            isTargetViable:=FALSE;
+        ENDIF
+
+
+        RETURN isTargetViable;
+    ENDFUNC
+
+
+    ! EDIT THIS TO SIMPLY RECEIVE INDEX FROM PC SDK APPLICATION AND INDEX PARAMETERS FROM PARAMETER ARRAYS:
+    ! Ex: speedVal := speedVals{ind}
+    FUNC speeddata getSpeed(string speedValStr)
+        IF speedValStr="v50" THEN
+            RETURN v50;
+        ELSEIF speedValStr="v100" THEN
+            RETURN v100;
+        ELSEIF speedValStr="v150" THEN
+            RETURN v150;
+        ELSEIF speedValStr="v200" THEN
+            RETURN v200;
+        ELSEIF speedValStr="v300" THEN
+            RETURN v300;
+        ELSEIF speedValStr="v400" THEN
+            RETURN v400;
+        ELSEIF speedValStr="v500" THEN
+            RETURN v500;
+        ELSEIF speedValStr="v600" THEN
+            RETURN v600;
+        ELSEIF speedValStr="v800" THEN
+            RETURN v800;
+        ELSEIF speedValStr="v1000" THEN
+            RETURN v1000;
+        ENDIF
+    ENDFUNC
+
+    FUNC zonedata getZone(string zoneValStr)
+        IF zoneValStr="fine" THEN
+            RETURN fine;
+        ELSEIF zoneValStr="z0" THEN
+            RETURN z0;
+        ELSEIF zoneValStr="z1" THEN
+            RETURN z1;
+        ELSEIF zoneValStr="z5" THEN
+            RETURN z5;
+        ELSEIF zoneValStr="z10" THEN
+            RETURN z10;
+        ELSEIF zoneValStr="z15" THEN
+            RETURN z15;
+        ELSEIF zoneValStr="z20" THEN
+            RETURN z20;
+        ELSEIF zoneValStr="z30" THEN
+            RETURN z30;
+        ELSEIF zoneValStr="z40" THEN
+            RETURN z40;
+        ELSEIF zoneValStr="z50" THEN
+            RETURN z50;
+        ELSEIF zoneValStr="z60" THEN
+            RETURN z60;
+        ELSEIF zoneValStr="z80" THEN
+            RETURN z80;
+        ELSEIF zoneValStr="z100" THEN
+            RETURN z100;
+        ELSEIF zoneValStr="z150" THEN
+            RETURN z150;
+        ELSEIF zoneValStr="z200" THEN
+            RETURN z200;
+        ENDIF
+    ENDFUNC
+
+    ! Main method:
+    PROC main()
+        
+        ! Sets the initial position of the digital twin when program first starts:
+        IF isFirst THEN
+            !initialPosPTP:=CRobT(\Tool:=gripper\WObj:=wobj0);
+            MoveJ initialPosPTP,v1000,fine,gripper\WObj:=wobj0; ! Moves robot to same initial position as the real GoFa robot
+            isFirst := FALSE;
+        ENDIF
+        
+        ! Resets home position:
+        IF isHomePosReset THEN
+            initialPosPTP:=CRobT(\Tool:=gripper\WObj:=wobj0);            
+            isHomePosReset := FALSE;
+        ENDIF
+        
+        ! Resets initial position and ptpIndex if data is cleared:
+        IF isCleared THEN
+            initialPosPTP:=CRobT(\Tool:=gripper\WObj:=wobj0);
+            ptpIndex:=1;
+            isCleared:=FALSE;
+        ENDIF
+
+        ! Calculating previous robtarget:
+        IF (ptpIndex-2)=0 THEN
+            lastRobTarget:=initialPosPTP;
+            isTargetViableB:=checkPointViability(lastRobTarget);
+        ELSEIF (ptpIndex-2)>0 THEN
+            lastRobTarget:=create_robtarget(tgPos{ptpIndex-2}, tgRot{ptpIndex-2});
+            isTargetViableB:=checkPointViability(lastRobTarget);
+        ELSE
+            isTargetViableB:=FALSE;
+        ENDIF
+
+        ! Calculating next robtarget:
+        IF (ptpIndex<=targetsNum) THEN
+            nextRobTarget:=create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex});
+            isTargetViableF:=checkPointViability(nextRobTarget);
+        ELSE
+            isTargetViableF:=FALSE;
+        ENDIF
+
+        ! Calculating viability of rotation:
+        IF(ptpIndex > 1) THEN
+            curRobTarget:=create_robtarget(tgPos{ptpIndex-1}, tgRot{ptpIndex-1});
+            isRotationViable:=checkPointViability(curRobTarget);
+        ELSE
+            isRotationViable:=FALSE;
+        ENDIF
+        
+        
+        !!! Moving from point to point:
+
+        ! Going forwards:
+        IF goForward AND isTargetViableF THEN
+            MoveJ nextRobTarget,getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+            ptpIndex:=ptpIndex+1;
+            goForward:=FALSE;
+
+            ! Going backwards
+        ELSEIF goBackward AND isTargetViableB THEN
+            MoveJ lastRobTarget,getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+            ptpIndex:=ptpIndex-1;
+            goBackward:=FALSE;
+            
+        ! Changing TCP Orientation
+        ELSEIF changeTCPOrient AND isRotationViable THEN
+            MoveJ curRobTarget,getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+            changeTCPOrient:=FALSE;
+            
+            ! Completing rest of path forwards
+        ELSEIF completeTraversal THEN
+
+            ! Looping forward through given targets:
+            WHILE(whileLoopCPT) DO
+                isNextPointViable_CPT := checkPointViability(create_robtarget(tgPos{ptpIndex + 1}, tgRot{ptpIndex + 1}));
+                
+                IF isNextPointViable_CPT THEN
+                    MoveJ create_robtarget(tgPos{ptpIndex + 1}, tgRot{ptpIndex + 1}),getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+                    
+                    IF ptpIndex < targetsNum THEN
+                        ptpIndex := ptpIndex + 1; ! Incrementing the ptpIndex
+                    ELSEIF ptpIndex = targetsNum THEN
+                        ptpIndex := ptpIndex + 1;
+                        whileLoopCPT := FALSE;
+                    ENDIF
+                ELSE
+                    whileLoopCPT := FALSE;
+                ENDIF
+                 
+                isNextPointViable_CPT := FALSE; ! Resetting point viability boolean
+
+            ENDWHILE
+            
+            ! Resetting booleans:
+            whileLoopCPT := TRUE;
+            completeTraversal := FALSE;
+
+        ELSEIF completeTraversalBack THEN
+        
+            ! Looping forward through given targets:
+            WHILE(whileLoopCPTB) DO
+                
+                IF ptpIndex = 2 THEN
+                    nextRobTarg_CPTB := initialPosPTP;
+                ELSE
+                    nextRobTarg_CPTB := create_robtarget(tgPos{ptpIndex - 2}, tgRot{ptpIndex - 2});
+                ENDIF
+                
+                isNextPointViable_CPTB := checkPointViability(nextRobTarg_CPTB);
+                
+                IF isNextPointViable_CPTB THEN
+                    MoveJ nextRobTarg_CPTB,getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+                    
+                    IF ptpIndex > 2 THEN
+                        ptpIndex := ptpIndex - 1; ! Incrementing the ptpIndex
+                    ELSEIF ptpIndex = 2 THEN
+                        ptpIndex := ptpIndex - 1;
+                        whileLoopCPTB := FALSE;
+                    ENDIF
+                ELSE
+                    whileLoopCPTB := FALSE;
+                ENDIF
+                 
+                isNextPointViable_CPTB := FALSE; ! Resetting point viability boolean
+
+            ENDWHILE
+            
+            ! Resetting booleans:
+            whileLoopCPTB := TRUE;
+            completeTraversalBack := FALSE;
+            
+        ENDIF
+
+    ENDPROC
+
+ENDMODULE

@@ -1,0 +1,55 @@
+            <!--
+            Declare Signals.
+
+            Default values are visible="true" and readonly="false".
+            It is OK to declare the same signal several times, as long as the
+            type and default values are the same.
+            The type and default is optional on subsequent declarations.
+            -->
+            <Signal name="SafetyEnable"                     type="BOOL" default="1" visible="true"  readonly="false" description="Must be true to enable safety functions. If false then DriveEnable will also be set to false." />
+
+            <Signal name="AutomaticMode"                    type="BOOL" default="0" visible="true"  readonly="false" description="True if Automatic mode is selected." />
+            <Signal name="ManualMode"                       type="BOOL" default="0" visible="true"  readonly="false" description="True if Manual mode is selected." />
+            <Signal name="ManualFullSpeedMode"              type="BOOL" default="0" visible="true"  readonly="false" description="True if Manual Full Speed mode is selected." />
+
+            <Signal name="DriveEnable"                      type="BOOL" default="0" visible="true"  readonly="false" description="True if the safety controller enables power to the actuators." />
+            <Signal name="DriveEnableFeedback"              type="BOOL" default="0" visible="true"  readonly="false" description="True if the Run Chain is closed." />
+
+            <Signal name="LocalEmergencyStopStatus"         type="BOOL" default="0" visible="true"  readonly="false" description="False if the emergency stop, for example on the FlexPendant, is pressed." />
+
+            <Signal name="ExternalPowerControlActive"       type="BOOL" default="0" visible="false"  readonly="false" description="True if external power control is active." />
+            <Signal name="ExternalPowerControlFeedback"     type="BOOL" default="0" visible="false"  readonly="false" description="True if the feedback from the external power control contactors are closed."/>
+            <Signal name="ExternalEmergencyStopStatus"      type="BOOL" default="0" visible="true"  readonly="false" description="Optional safe input on GPIO_IN1. " />
+            <Signal name="EmergencyStopActivated"           type="BOOL" default="0" visible="true"  readonly="false" description="Onput on GPIO_OUT2. " />
+            <Signal name="ProtectiveStop"                   type="BOOL" default="0" visible="true"  readonly="false" description="Protective stop in automatic mode on GPIO_IN2." />
+            <Signal name="EnableSwitch"                     type="BOOL" default="0" visible="true"  readonly="false" description="Enable switch status on GPIO_IN4." />
+
+            <Signal name="DeviceEnable1"                    type="BOOL" default="0" visible="false"  readonly="false" description="Set by the MC." />
+            <Signal name="DriveEnableAllowed"               type="BOOL" default="0" visible="false"  readonly="false" description="Set by the SC." />
+
+<!--
+            Declare FuncIOMappings.
+                The mapped signals must exist at this point - i.e., they
+                must already have been specified previously in the configuration file.
+                Default is mandatory="false". If the user does not assign a signal then
+                the mapping shall be removed.
+
+                When mandatory="true" then a signal must be specified and the entry cannot be deleted.
+
+                If the signal is marked as visible="false" then do not show the FuncIOMapping either.
+            -->
+            <FuncIOMappings>
+              <SafetyEnable                   signalName="SafetyEnable"                   mandatory="true" description="Must be true to enable safety functions. If false then DriveEnable will also be set to false." />
+
+              <AutomaticMode                  signalName="AutomaticMode"                  mandatory="true" description="True if Automatic mode is selected." />
+              <ManualMode                     signalName="ManualMode"                     mandatory="true" description="True if Manual mode is selected." />
+              <ManualFullSpeedMode            signalName="ManualFullSpeedMode"            mandatory="true" description="True if Manual Full Speed mode is selected." />
+
+              <DriveEnable                    signalName="DriveEnable"                    mandatory="true" description="True if the safety controller enables power to the actuators" />
+              <DriveEnableFeedback            signalName="DriveEnableFeedback"            mandatory="true" description="True if the Run Chain is closed." />
+
+              <LocalEmergencyStopStatus       signalName="LocalEmergencyStopStatus"       mandatory="true" description="False if the emergency stop, for example on the FlexPendant, is pressed." />
+
+              <ExternalPowerControlActive     signalName="ExternalPowerControlActive"     mandatory="true" description="True if external power control is active." />
+              <ExternalPowerControlFeedback   signalName="ExternalPowerControlFeedback"   mandatory="true" description="True if the feedback from the external power control contactors are closed." />
+            </FuncIOMappings>

@@ -1,0 +1,19 @@
+
+<FuncIOMappings>
+  <ExternalEmergencyStopStatus                  signalName="ExternalEmergencyStopStatus" mandatory="true" />
+  <EmergencyStopActivated                       signalName="EmergencyStopActivated"      mandatory="true" />
+  <ProtectiveStop                                     signalName="ProtectiveStop"                    mandatory="true" />
+  <EnableSwitch                                 signalName="EnableSwitch"                mandatory="true" />
+  <DeviceEnable1                                signalName="DeviceEnable1"               mandatory="true" />
+  <DriveEnableAllowed                           signalName="DriveEnableAllowed"          mandatory="true" />
+</FuncIOMappings>
+
+<Net name="SafeLocalIO" visible="false" readonly="true" description="Network for manipulating GPIO pins on the safety controller." >
+  <!--
+    This is for for Modular Safety (which is always 3Way Soft, but with no I/O):
+  -->
+  <Device name="SafeLocalIODev" inSizeBits="6" outSizeBits="2" address="" visible="false" readonly="true" description="Device for manipulating GPIO pins on the safety controller." >
+    <FuncIO name="ExternalEmergencyStopStatus"  offset="0"   width="1" direction="input"  visible="false" readonly="true" />
+    <FuncIO name="ProtectiveStop"               offset="1"   width="1" direction="input"  visible="false" readonly="true" />
+    <FuncIO name="EnableSwitch"                 offset="3"   width="1" direction="input"  visible="false" readonly="true" />
+    <FuncIO name="LocalEmergencyStopStatus"     offset="4"   width="1" direction="input"  visible="false" readonly="true" />

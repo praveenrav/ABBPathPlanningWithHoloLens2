@@ -1,0 +1,15 @@
+<9>Dec 13 03:00:51 CRB15000_5_95 ABB-UAL:01:Security log file deleted by user|-|syslog.log not found|3420|00001|-|robot|syslog	1
+<13>Dec 13 03:00:53 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00002|-|robot|NativeUser	2
+<13>Dec 13 03:00:54 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00003|-|robot|NativeUser	3
+<13>Dec 13 03:00:55 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00004|-|robot|NativeUser	4
+<13>Dec 13 03:00:56 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00005|-|robot|NativeUser	5
+<13>Dec 13 03:00:56 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00006|-|robot|NativeUser	6
+<13>Dec 13 03:00:56 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00007|-|robot|NativeUser	7
+<13>Dec 13 03:00:59 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00008|-|robot|Admin	8
+<13>Dec 13 03:01:06 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00009|-|robot|Admin	9
+<13>Dec 13 03:04:25 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00010|-|robot|	10
+<13>Dec 13 03:04:25 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00011|-|robot|	11
+<13>Dec 13 03:04:25 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7144|1210|00012|-|robot|	12
+-----BEGIN DIGEST-----
+OfNj7jMjTlngSdjhNnMURFSb7/lczY6kvCSFaJB0hy8IiiEqFoJT4ZdcugHCNfgENRJN9g==
+-----END DIGEST-----
