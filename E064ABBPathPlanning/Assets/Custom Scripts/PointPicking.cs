@@ -23,7 +23,7 @@ public class PointPicking : MonoBehaviour
     [SerializeField]
     public TextMeshProUGUI xCoor;
     public TextMeshProUGUI yCoor;
-    public TextMeshProUGUI zCoor;
+    public TextMeshProUGUI zCoor; // z coordinate
     public TextMeshProUGUI savePointStatusLabel; // Label representing whether or not any more points are able to be saved + other information
     public TextMeshProUGUI coordinateSystemStatusLabel;
     public TextMeshProUGUI pointPickingStatusLabel; // Label representing whether or not the point-picking process is active
