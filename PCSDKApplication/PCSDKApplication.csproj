@@ -56,12 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TCPServerWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TCPServerWindow.Designer.cs">
-      <DependentUpon>TCPServerWindow.cs</DependentUpon>
-    </Compile>
+    <Compile Include="ABBInterface.cs" />
     <Compile Include="TCPServer.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
@@ -93,9 +88,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TCPServerWindow.resx">
-      <DependentUpon>TCPServerWindow.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

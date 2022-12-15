@@ -1,262 +1,256 @@
-
-Script begin: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/system/startup_with_axc.cmd
-19:37:18:391000 Status 0 from startup_log
+19:26:38:361000 Status 0 from startup_log
 Begin system startup
-19:37:18:391000 Status 0 from echo
-19:37:18:391000 Status 0 from invoke2 s17_initialize
-19:37:18:391000 Status 0 from invoke AxcHal_InitModule
-19:37:18:391000 Status 0 from invoke AxcHal_StartModule
-19:37:22:391000 Status 0 from delay
+19:26:38:361000 Status 0 from echo
+19:26:39:71000 Status 0 from invoke2 s17_initialize
+19:26:39:71000 Status 0 from invoke AxcHal_InitModule
+19:26:39:71000 Status 0 from invoke AxcHal_StartModule
+19:26:43:71000 Status 0 from delay
 C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/TEMP has been mounted.
-19:37:23:604000 Status 0 from baseinit
+19:26:45:33000 Status 0 from baseinit
 Goto to label: NO_ASCII_LOG
-19:37:23:604000 Status 0 from getkey ASCIILogMedia
-19:37:23:604000 Status 0 from uprobe_init
-19:37:23:604000 Status 0 from debug_service_base_init
-19:37:23:604000 Status 0 from invoke S33_01_create
-19:37:23:604000 Status 0 from S33_01_init
-19:37:24:918000 Status 0 from invoke AxcServoControl_InitModule
+19:26:45:33000 Status 0 from getkey ASCIILogMedia
+19:26:45:33000 Status 0 from uprobe_init
+19:26:45:33000 Status 0 from debug_service_base_init
+19:26:45:33000 Status 0 from invoke S33_01_create
+19:26:45:33000 Status 0 from S33_01_init
+19:26:47:406000 Status 0 from invoke AxcServoControl_InitModule
 Goto to label: VC_MCHEXCEPTION_SKIP
-19:37:24:918000 Status 0 from ifvc VC_MCHEXCEPTION_SKIP
-19:37:24:918000 Status 0 from invoke S98_01_create
-19:37:24:918000 Status 0 from S98_01_init
-19:38:45:742000 Status 0 from invoke scinit_load_and_start_safety_controller
+19:26:47:406000 Status 0 from ifvc VC_MCHEXCEPTION_SKIP
+19:26:47:406000 Status 0 from invoke S98_01_create
+19:26:47:574000 Status 0 from S98_01_init
+19:29:18:565000 Status 0 from invoke scinit_load_and_start_safety_controller
 Goto to label: VC_SEP_SKIP
-19:38:45:742000 Status 0 from ifvc VC_SEP_SKIP
+19:29:18:565000 Status 0 from ifvc VC_SEP_SKIP
 Goto to label: VC_CS_SKIP
-19:38:45:742000 Status 0 from ifvc VC_CS_SKIP
+19:29:18:565000 Status 0 from ifvc VC_CS_SKIP
 Goto to label: VC_SKIP_FIRMWARE_UPGRADE
-19:38:45:742000 Status 0 from ifvc VC_SKIP_FIRMWARE_UPGRADE
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-19:38:45:742000 Status 0 from bb_populate
-Illegal call: sysdmp_init must be called first!19:38:45:742000 Status -1 from sysdmp_init
+19:29:18:565000 Status 0 from ifvc VC_SKIP_FIRMWARE_UPGRADE
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+19:29:18:565000 Status 0 from bb_populate
+Illegal call: sysdmp_init must be called first!19:29:18:565000 Status -1 from sysdmp_init
  ... will continue!
-19:38:46:880000 Status 0 from task 
-19:38:46:880000 Status 0 from debug_service_init
-Illegal call: sysdmp_init must be called first!19:38:46:880000 Status -1 from sysdmp_add
+19:29:20:236000 Status 0 from task 
+19:29:20:236000 Status 0 from debug_service_init
+Illegal call: sysdmp_init must be called first!19:29:20:236000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:38:46:880000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:29:20:236000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:38:46:880000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:29:20:236000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:38:46:880000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:29:20:236000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:38:46:880000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:29:20:236000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:38:46:880000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:29:20:236000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:38:46:880000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:29:20:236000 Status -1 from sysdmp_add
  ... will continue!
 Goto to label: NO_WVLOG
-19:38:46:880000 Status 0 from ifvc NO_WVLOG
+19:29:20:236000 Status 0 from ifvc NO_WVLOG
 Goto to label: NO_ETHCAP
-19:38:46:880000 Status 0 from ifvc NO_ETHCAP
-19:38:47:499000 Status 0 from task 
-19:38:47:505000 Status 0 from synchronize task
-19:38:47:505000 Status 0 from go task
-19:38:48:478000 Status 0 from task 
-19:38:49:468000 Status 0 from task 
-19:38:50:465000 Status 0 from task 
+19:29:20:236000 Status 0 from ifvc NO_ETHCAP
+19:29:22:49000 Status 0 from task 
+19:29:22:55000 Status 0 from synchronize task
+19:29:22:55000 Status 0 from go task
+19:29:23:272000 Status 0 from task 
+19:29:24:478000 Status 0 from task 
+19:29:25:763000 Status 0 from task 
 Goto to label: VC_NO_CLOCK_PROBE
-19:38:50:465000 Status 0 from ifvc VC_NO_CLOCK_PROBE
+19:29:25:763000 Status 0 from ifvc VC_NO_CLOCK_PROBE
 
-22-12-13  03:00:53 MC0: type = STATE_CHANGE id = Operational code = 45 (10045)
+22-12-15  03:52:44 MC0: type = STATE_CHANGE id = Operational code = 45 (10045)
 
-19:38:50:465000 Status 0 from basenew
+19:29:25:763000 Status 0 from basenew
 Base services started
-19:38:50:465000 Status 0 from echo
+19:29:25:763000 Status 0 from echo
 Goto to label: VC_NO_REMOTE_DIAGNOSTIC
-19:38:50:465000 Status 0 from ifvc VC_NO_REMOTE_DIAGNOSTIC
-19:38:50:465000 Status 0 from S98_01_new
-19:38:50:465000 Status 0 from direxist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/TEMP/rw_trash
+19:29:25:763000 Status 0 from ifvc VC_NO_REMOTE_DIAGNOSTIC
+19:29:25:763000 Status 0 from S98_01_new
+19:29:25:763000 Status 0 from direxist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/TEMP/rw_trash
 Goto to label: NEXT_STEP
-19:38:50:465000 Status 0 from goto NEXT_STEP
+19:29:25:763000 Status 0 from goto NEXT_STEP
 Initializing system interrupts
-19:38:50:465000 Status 0 from print
-19:38:51:469000 Status 0 from invoke AxcServoControl_StartModule
-19:38:54:469000 Status 0 from delay
+19:29:25:763000 Status 0 from print
+19:29:26:531000 Status 0 from invoke AxcServoControl_StartModule
+19:29:29:531000 Status 0 from delay
 Goto to label: VC_NO_MC_SEP_UPGRADE
-19:38:54:469000 Status 0 from ifvc VC_NO_MC_SEP_UPGRADE
+19:29:29:531000 Status 0 from ifvc VC_NO_MC_SEP_UPGRADE
 Goto to label: VC_NO_MC_CS_UPGRADE
-19:38:54:469000 Status 0 from ifvc VC_NO_MC_CS_UPGRADE
+19:29:29:531000 Status 0 from ifvc VC_NO_MC_CS_UPGRADE
 Goto to label: VC_NO_MC_FPGA_UPGRADE
-19:38:54:469000 Status 0 from ifvc VC_NO_MC_FPGA_UPGRADE
-19:38:54:469000 Status 0 from invoke read_init
-19:38:54:469000 Status 0 from invoke fciInit
-19:38:54:469000 Status 0 from init eio
-19:38:54:469000 Status 0 from invoke internalBusDrv
-19:38:56:557000 Status 0 from task 
-19:38:58:193000 Status 0 from task 
-19:38:58:193000 Status 0 from invoke incInstallDriver
+19:29:29:531000 Status 0 from ifvc VC_NO_MC_FPGA_UPGRADE
+19:29:29:531000 Status 0 from invoke read_init
+19:29:29:531000 Status 0 from invoke fciInit
+19:29:29:531000 Status 0 from init eio
+19:29:29:531000 Status 0 from invoke internalBusDrv
+19:29:30:909000 Status 0 from task 
+19:29:31:640000 Status 0 from task 
+19:29:31:640000 Status 0 from invoke incInstallDriver
 Goto to label: LOAD_CMD
-19:38:58:193000 Status 0 from fileexist C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/options/enms/en_base.cmd
+19:29:31:695000 Status 0 from fileexist C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/options/enms/en_base.cmd
 
 Script begin: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/options/enms/en_base.cmd
-Illegal call: sysdmp_init must be called first!19:38:58:193000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:29:31:695000 Status -1 from sysdmp_add
  ... will continue!
-19:38:59:409000 Status 0 from task 
-19:39:01:129000 Status 0 from task 
-19:39:02:825000 Status 0 from task 
-19:39:02:825000 Status 0 from invoke incInstallDriver
+19:29:32:782000 Status 0 from task 
+19:29:33:439000 Status 0 from task 
+19:29:34:120000 Status 0 from task 
+19:29:34:120000 Status 0 from invoke incInstallDriver
 Script end: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/options/enms/en_base.cmd
-19:39:02:825000 Status 0 from include 
+19:29:34:120000 Status 0 from include 
 Goto to label: NO_BONJOUR_DAEMON
-19:39:02:825000 Status 0 from ifvc NO_BONJOUR_DAEMON
-19:39:02:825000 Status 0 from invoke2 init_mempools
-19:39:04:21000 Status 0 from task 
-19:39:05:437000 Status 0 from task 
-19:39:07:157000 Status 0 from task 
-19:39:08:890000 Status 0 from task 
-19:39:10:121000 Status 0 from task 
+19:29:34:120000 Status 0 from ifvc NO_BONJOUR_DAEMON
+19:29:34:120000 Status 0 from invoke2 init_mempools
+19:29:35:347000 Status 0 from task 
+19:29:35:822000 Status 0 from task 
+19:29:36:560000 Status 0 from task 
+19:29:37:255000 Status 0 from task 
+19:29:37:435000 Status 0 from task 
 Starting features - phase 1 of 5
-19:39:10:121000 Status 0 from echo
+19:29:37:435000 Status 0 from echo
 Goto to label: LOAD_CMD
-19:39:10:121000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l0.cmd
+19:29:37:435000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l0.cmd
 
 Script begin: C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l0.cmd
 
 Script begin: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/options/sc/ScInc_opt.cmd
 Starting ScIncTasks and installs the driver/networks
-19:39:10:121000 Status 0 from echo
-19:39:11:713000 Status 0 from task 
-19:39:13:449000 Status 0 from task 
-19:39:13:449000 Status 0 from invoke incInstallDriver
+19:29:37:448000 Status 0 from echo
+19:29:39:65000 Status 0 from task 
+19:29:39:781000 Status 0 from task 
+19:29:39:782000 Status 0 from invoke incInstallDriver
 End of ScIncTasks installation
-19:39:13:449000 Status 0 from echo
+19:29:39:782000 Status 0 from echo
 Script end: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/options/sc/ScInc_opt.cmd
-19:39:13:449000 Status 0 from include End of ScIncTasks installation
+19:29:39:782000 Status 0 from include End of ScIncTasks installation
 Script end: C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l0.cmd
-19:39:13:449000 Status 0 from include End of ScIncTasks installation
-19:39:13:449000 Status 0 from init sio
-19:39:13:449000 Status 0 from init motion
-19:39:13:449000 Status 0 from init rol
-19:39:13:449000 Status 0 from init cab
-19:39:13:449000 Status 0 from init bar
-19:39:13:449000 Status 0 from init pgmrun
-19:39:13:449000 Status 0 from init rapid
-19:39:13:449000 Status 0 from init puscfg
-19:39:13:449000 Status 0 from invoke sdlog_init
-19:39:14:456000 Status 0 from task 
+19:29:39:782000 Status 0 from include End of ScIncTasks installation
+19:29:39:782000 Status 0 from init sio
+19:29:39:782000 Status 0 from init motion
+19:29:39:782000 Status 0 from init rol
+19:29:39:782000 Status 0 from init cab
+19:29:39:782000 Status 0 from init bar
+19:29:39:782000 Status 0 from init pgmrun
+19:29:39:782000 Status 0 from init rapid
+19:29:39:782000 Status 0 from init puscfg
+19:29:39:782000 Status 0 from invoke sdlog_init
+19:29:40:799000 Status 0 from task 
 Goto to label: VC_CABSUPTS_SKIP
-19:39:14:456000 Status 0 from ifvc VC_CABSUPTS_SKIP
-19:39:14:456000 Status 0 from invoke2 sevt_safety_init
-19:39:14:456000 Status 0 from invoke2 scsafIntBusInit
-19:39:14:456000 Status 0 from invoke2 epanel_device_init
-19:39:14:456000 Status 0 from invoke2 axc_brd_create_IntBusDrvSys
-19:39:15:616000 Status 0 from task 
-19:39:17:281000 Status 0 from task 
-19:39:18:893000 Status 0 from task 
-19:39:20:577000 Status 0 from task 
-19:39:22:265000 Status 0 from task 
-19:39:22:266000 Status 0 from reconfigure eio
-19:39:22:266000 Status 0 from reconfigure sio
-19:39:24:397000 Status 0 from task 
-19:39:25:850000 Status 0 from task 
-19:39:27:282000 Status 0 from task 
-19:39:28:715000 Status 0 from task 
-19:39:30:153000 Status 0 from task 
-19:39:31:559000 Status 0 from task 
-19:39:32:996000 Status 0 from task 
-19:39:34:317000 Status 0 from task 
-19:39:35:749000 Status 0 from task 
-19:39:36:877000 Status 0 from task 
-19:39:38:308000 Status 0 from task 
-19:39:39:753000 Status 0 from task 
-19:39:41:133000 Status 0 from task 
-19:39:42:504000 Status 0 from task 
-19:39:43:856000 Status 0 from task 
-19:39:45:217000 Status 0 from task 
-19:39:46:564000 Status 0 from task 
-19:39:47:917000 Status 0 from task 
-19:39:49:277000 Status 0 from task 
-19:39:50:643000 Status 0 from task 
-19:39:52:13000 Status 0 from task 
-19:39:52:266000 Status 0 from task 
-19:39:53:501000 Status 0 from task 
-19:39:54:853000 Status 0 from task 
-19:39:56:192000 Status 0 from task 
-19:39:57:535000 Status 0 from task 
-19:39:58:863000 Status 0 from task 
+19:29:40:799000 Status 0 from ifvc VC_CABSUPTS_SKIP
+19:29:40:799000 Status 0 from invoke2 sevt_safety_init
+19:29:40:799000 Status 0 from invoke2 scsafIntBusInit
+19:29:40:799000 Status 0 from invoke2 epanel_device_init
+19:29:40:799000 Status 0 from invoke2 axc_brd_create_IntBusDrvSys
+19:29:41:871000 Status 0 from task 
+19:29:42:540000 Status 0 from task 
+19:29:43:265000 Status 0 from task 
+19:29:43:555000 Status 0 from task 
+19:29:45:27000 Status 0 from task 
+19:29:45:89000 Status 0 from reconfigure eio
+19:29:45:89000 Status 0 from reconfigure sio
+19:29:45:654000 Status 0 from task 
+19:29:46:203000 Status 0 from task 
+19:29:46:785000 Status 0 from task 
+19:29:47:364000 Status 0 from task 
+19:29:47:915000 Status 0 from task 
+19:29:48:475000 Status 0 from task 
+19:29:49:97000 Status 0 from task 
+19:29:49:679000 Status 0 from task 
+19:29:50:268000 Status 0 from task 
+19:29:50:851000 Status 0 from task 
+19:29:51:475000 Status 0 from task 
+19:29:52:95000 Status 0 from task 
+19:29:52:721000 Status 0 from task 
+19:29:53:377000 Status 0 from task 
+19:29:54:679000 Status 0 from task 
+19:29:55:270000 Status 0 from task 
+19:29:55:831000 Status 0 from task 
+19:29:56:399000 Status 0 from task 
+19:29:56:971000 Status 0 from task 
+19:29:57:527000 Status 0 from task 
+19:29:58:63000 Status 0 from task 
+19:29:58:643000 Status 0 from task 
+19:29:59:915000 Status 0 from task 
+19:30:00:540000 Status 0 from task 
+19:30:01:104000 Status 0 from task 
+19:30:01:676000 Status 0 from task 
+19:30:02:187000 Status 0 from task 
 Goto to label: VC_AXC_SKIP
-19:39:58:863000 Status 0 from ifvc VC_AXC_SKIP
-19:40:00:133000 Status 0 from task 
-19:40:01:465000 Status 0 from task 
-19:40:02:769000 Status 0 from task 
-19:40:04:41000 Status 0 from task 
-19:40:05:333000 Status 0 from task 
-19:40:06:597000 Status 0 from task 
-19:40:07:881000 Status 0 from task 
-19:40:09:139000 Status 0 from task 
-19:40:10:369000 Status 0 from task 
-19:40:11:590000 Status 0 from task 
-19:40:12:817000 Status 0 from task 
-19:40:13:978000 Status 0 from task 
-19:40:15:181000 Status 0 from task 
-19:40:16:381000 Status 0 from task 
-19:40:17:505000 Status 0 from task 
-19:40:18:595000 Status 0 from task 
-19:40:19:747000 Status 0 from task 
-19:40:20:900000 Status 0 from task 
-19:40:21:804000 Status 0 from task 
-19:40:22:954000 Status 0 from task 
-19:40:24:115000 Status 0 from task 
-19:40:25:253000 Status 0 from task 
-19:40:26:246000 Status 0 from task 
-19:40:27:222000 Status 0 from task 
-19:40:28:377000 Status 0 from task 
-19:40:29:529000 Status 0 from task 
-19:40:30:377000 Status 0 from task 
+19:30:02:187000 Status 0 from ifvc VC_AXC_SKIP
+19:30:02:731000 Status 0 from task 
+19:30:03:339000 Status 0 from task 
+19:30:03:945000 Status 0 from task 
+19:30:04:544000 Status 0 from task 
+19:30:05:15000 Status 0 from task 
+19:30:05:951000 Status 0 from task 
+19:30:06:426000 Status 0 from task 
+19:30:06:875000 Status 0 from task 
+19:30:07:407000 Status 0 from task 
+19:30:07:907000 Status 0 from task 
+19:30:08:335000 Status 0 from task 
+19:30:08:730000 Status 0 from task 
+19:30:09:669000 Status 0 from task 
+19:30:10:160000 Status 0 from task 
+19:30:10:616000 Status 0 from task 
+19:30:11:118000 Status 0 from task 
+19:30:11:590000 Status 0 from task 
+19:30:12:75000 Status 0 from task 
+19:30:12:556000 Status 0 from task 
+19:30:13:39000 Status 0 from task 
+19:30:13:435000 Status 0 from task 
+19:30:13:883000 Status 0 from task 
+19:30:14:363000 Status 0 from task 
+19:30:14:859000 Status 0 from task 
+19:30:15:89000 Status 0 from task 
+19:30:15:605000 Status 0 from task 
+19:30:16:59000 Status 0 from task 
 Waiting for task group 1 to start
-19:40:30:377000 Status 0 from print
-19:40:30:383000 Status 0 from synchronize task
-19:40:30:883000 Status 0 from delay
+19:30:16:59000 Status 0 from print
+19:30:16:65000 Status 0 from synchronize task
+19:30:16:565000 Status 0 from delay
 Message (cmd/msgType: 299/3) received from sid: 0
 Message (cmd/msgType: 299/3) received from sid: 0
 Rapi-Subscription running on slot: 205
-19:40:30:883000 Status 0 from go task
+19:30:16:565000 Status 0 from go task
 Goto to label: VC_AXC_SKIP
-19:40:30:883000 Status 0 from ifvc VC_AXC_SKIP
+19:30:16:565000 Status 0 from ifvc VC_AXC_SKIP
 Starting features - phase 2 of 5
-19:40:30:883000 Status 0 from echo
+19:30:16:565000 Status 0 from echo
 Goto to label: LOAD_CMD
-19:40:30:883000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/option.cmd
+19:30:16:565000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/option.cmd
 
 Script begin: C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/option.cmd
 
 Script begin: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/options/sc/scopt.cmd
-Illegal call: sysdmp_init must be called first!19:40:30:883000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:16:565000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:30:883000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:16:565000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:30:883000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:16:565000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:30:883000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:16:565000 Status -1 from sysdmp_add
  ... will continue!
 Starting Safety Controller orchestrator
-19:40:30:883000 Status 0 from echo
+19:30:16:565000 Status 0 from echo
   Cpu1 in state ready
-
-22-12-13  03:00:54 SC CPUA: type = STATE_CHANGE id = Safety code = 665 (90665)
-
-19:40:30:937000 Status 0 from task 
+19:30:16:579000 Status 0 from task 
 Script end: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/options/sc/scopt.cmd
-19:40:30:937000 Status 0 from include 
+19:30:16:579000 Status 0 from include 
 Script end: C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/option.cmd
-19:40:30:937000 Status 0 from include 
+19:30:16:579000 Status 0 from include 
 Starting motion system
-19:40:30:937000 Status 0 from echo
+19:30:16:579000 Status 0 from echo
 Simulated moc_io.
-adding fc_master1 as fc_master_name
 STATMATS. New motion_planner: motion_planner_1
 STATMATS. New motion_planner: motion_planner_2
 STATMATS. New motion_planner: motion_planner_3
@@ -265,291 +259,291 @@ STATMATS. New motion_planner: motion_planner_5
 STATMATS. New motion_planner: motion_planner_6
 STATMATS. New motion_planner: motion_planner_7
 SISMA_BS_INFO 40344
-19:40:31:960000 Status 0 from new motion
-19:40:33:460000 Status 0 from delay
-19:40:33:460000 Status 0 from connect_dependings SYS_STORED_OBJ_CAB
-19:40:33:460000 Status 0 from if SYNCROB
+19:30:17:602000 Status 0 from new motion
+19:30:19:102000 Status 0 from delay
+19:30:19:102000 Status 0 from connect_dependings SYS_STORED_OBJ_CAB
+19:30:19:102000 Status 0 from if SYNCROB
 Goto to label: NOSYNC
-19:40:33:460000 Status 0 from goto NOSYNC
+19:30:19:102000 Status 0 from goto NOSYNC
 Waiting for motion system to start
-19:40:33:460000 Status 0 from echo
-19:40:33:466000 Status 0 from synchronize task
+19:30:19:102000 Status 0 from echo
+19:30:19:108000 Status 0 from synchronize task
 Message (cmd/msgType: 299/3) received from sid: 0
 Message (cmd/msgType: 299/3) received from sid: 0
 Message (cmd/msgType: 299/3) received from sid: 0
 Message (cmd/msgType: 299/3) received from sid: 0
-Message (cmd/msgType: 299/3) received from sid: 0
-19:40:33:466000 Status 0 from go task
+19:30:19:108000 Status 0 from go task
 Synchronizing industrial networks
-19:40:33:466000 Status 0 from echo
+19:30:19:108000 Status 0 from echo
 Message (cmd/msgType: 299/3) received from sid: 0
-19:40:33:466000 Status 0 from io_synchronize
+Message (cmd/msgType: 299/3) received from sid: 0
+19:30:19:108000 Status 0 from io_synchronize
 Goto to label: VIRTIOTS_RUN
-19:40:33:466000 Status 0 from ifvc VIRTIOTS_RUN
-19:40:33:506000 Status 0 from task 
+19:30:19:108000 Status 0 from ifvc VIRTIOTS_RUN
+19:30:19:119000 Status 0 from task 
 Starting RAPID system
-19:40:33:506000 Status 0 from echo
-19:40:33:506000 Status 0 from invoke rldryrun_start
-19:40:33:506000 Status 0 from invoke rlcyclic_start
-19:40:33:506000 Status 13 from invoke rlvisualize_start
-19:40:33:506000 Status 0 from invoke rldata_init
+19:30:19:119000 Status 0 from echo
+19:30:19:119000 Status 0 from invoke rldryrun_start
+19:30:19:119000 Status 0 from invoke rlcyclic_start
+19:30:19:119000 Status 13 from invoke rlvisualize_start
+19:30:19:119000 Status 0 from invoke rldata_init
 ------------number_of_tasks 2 
 ------------number_of_tasks 2 
+19:30:19:631000 Status 0 from new rapid
+Starting features - phase 3 of 5
+19:30:19:631000 Status 0 from echo
+19:30:19:631000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l1.cmd
+Goto to label: NEXT_STEP
+19:30:19:631000 Status 0 from goto NEXT_STEP
 
-22-12-13  03:00:55 MC0: type = STATE_CHANGE id = Operational code = 2 (10002)
+22-12-15  03:52:47 SC CPUA: type = WARNING id = Safety code = 526 (90526)
+
+
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 10 (10010)
+
+
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 17 (10017)
+
+19:30:24:867000 Status 0 from new cab
+Starting communication services
+19:30:24:867000 Status 0 from echo
+19:30:24:867000 Status 0 from invoke2 set_max_allowed_robapi_wan_connections
+
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 2 (10002)
 arg 0: 1 arg 1: 0 
 arg 2: SC_CBC
 
 
-22-12-13  03:00:55 MC0: type = STATE_CHANGE id = Operational code = 2 (10002)
-arg 0: 2 arg 1: 0 
-arg 2: T_ROB1
-
-
-22-12-13  03:00:56 MC0: type = STATE_CHANGE id = Operational code = 40 (10040)
-arg 0: 0 arg 1: 0 
-arg 2: T_ROB1
-arg 3: 51988152 arg 4: 252504192 
-19:40:34:9000 Status 0 from new rapid
-Starting features - phase 3 of 5
-19:40:34:9000 Status 0 from echo
-19:40:34:9000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l1.cmd
-Goto to label: NEXT_STEP
-19:40:34:9000 Status 0 from goto NEXT_STEP
-
-22-12-13  03:00:57 MC0: type = STATE_CHANGE id = Operational code = 12 (10012)
-
-
-22-12-13  03:00:57 MC0: type = STATE_CHANGE id = Operational code = 15 (10015)
-
-19:40:39:265000 Status 0 from new cab
-Starting communication services
-19:40:39:265000 Status 0 from echo
-19:40:39:265000 Status 0 from invoke2 set_max_allowed_robapi_wan_connections
-
-22-12-13  03:00:57 MC0: type = STATE_CHANGE id = Operational code = 150 (10150)
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 150 (10150)
 arg 0: 1 
 arg 1: SC_CBC
 
 
-22-12-13  03:00:57 MC0: type = STATE_CHANGE id = Operational code = 150 (10150)
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 150 (10150)
 arg 0: 2 
 arg 1: T_ROB1
 
 
-22-12-13  03:00:57 MC0: type = STATE_CHANGE id = Operational code = 129 (10129)
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 129 (10129)
 arg 0: 1 
 arg 1: SC_CBC
 
 
-22-12-13  03:00:57 MC0: type = STATE_CHANGE id = Operational code = 2 (10002)
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 2 (10002)
 arg 0: 2 arg 1: 0 
 arg 2: T_ROB1
 
 
-22-12-13  03:00:57 MC0: type = STATE_CHANGE id = Operational code = 150 (10150)
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 150 (10150)
 arg 0: 1 
 arg 1: SC_CBC
 
-19:40:39:345000 Status 0 from task 
+19:30:24:877000 Status 0 from task 
+19:30:24:927000 Status 0 from task 
 
-22-12-13  03:00:57 MC0: type = STATE_CHANGE id = Operational code = 129 (10129)
+22-12-15  03:52:47 MC0: type = STATE_CHANGE id = Operational code = 129 (10129)
 arg 0: 2 
 arg 1: T_ROB1
 
-19:40:39:489000 Status 0 from task 
-19:40:39:641000 Status 0 from task 
-19:40:39:793000 Status 0 from task 
+19:30:24:980000 Status 0 from task 
+19:30:25:51000 Status 0 from task 
 robcmdts ipc connected ...
-19:40:39:945000 Status 0 from task 
+19:30:25:119000 Status 0 from task 
 robayats started ...
-19:40:40:101000 Status 0 from task 
-19:40:40:257000 Status 0 from task 
-19:40:40:405000 Status 0 from task 
-19:40:40:557000 Status 0 from task 
-19:40:40:705000 Status 0 from task 
-19:40:40:858000 Status 0 from task 
-19:40:41:5000 Status 0 from task 
+19:30:25:187000 Status 0 from task 
+19:30:25:247000 Status 0 from task 
+19:30:25:315000 Status 0 from task 
+19:30:25:375000 Status 0 from task 
+19:30:25:451000 Status 0 from task 
+19:30:25:513000 Status 0 from task 
+19:30:25:579000 Status 0 from task 
 Starting features - phase 4 of 5
-19:40:41:5000 Status 0 from echo
-19:40:41:5000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l2.cmd
+19:30:25:579000 Status 0 from echo
+19:30:25:579000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l2.cmd
 Goto to label: NEXT_STEP
-19:40:41:5000 Status 0 from goto NEXT_STEP
-19:40:41:141000 Status 0 from task 
+19:30:25:579000 Status 0 from goto NEXT_STEP
+19:30:25:635000 Status 0 from task 
 Goto to label: NETSCANSKIP
-19:40:41:141000 Status 0 from ifvc NETSCANSKIP
+19:30:25:635000 Status 0 from ifvc NETSCANSKIP
 Finalizing RAPID system
-19:40:41:141000 Status 0 from echo
-19:40:41:147000 Status 0 from synchronize task
-19:40:41:147000 Status 0 from rapid_startup_ready
-19:40:41:147000 Status 0 from cab_startup_ready
+19:30:25:635000 Status 0 from echo
+19:30:25:641000 Status 0 from synchronize task
+19:30:25:641000 Status 0 from rapid_startup_ready
+19:30:25:641000 Status 0 from cab_startup_ready
 Message (cmd/msgType: 299/3) received from sid: 0
 Message (cmd/msgType: 299/3) received from sid: 0
 Message (cmd/msgType: 299/3) received from sid: 0
 Message (cmd/msgType: 299/3) received from sid: 0
-19:40:41:147000 Status 0 from go task
+19:30:25:641000 Status 0 from go task
 Goto to label: VTSPEED
-19:40:41:147000 Status 0 from ifvc VTSPEED
-19:40:41:147000 Status 0 from invoke VTSetSpeed
+19:30:25:641000 Status 0 from ifvc VTSPEED
+19:30:25:641000 Status 0 from invoke VTSetSpeed
 Starting features - phase 1 of 5
-19:40:41:147000 Status 0 from echo
-19:40:41:147000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l3.cmd
+19:30:25:641000 Status 0 from echo
+19:30:25:641000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/opt_l3.cmd
 Goto to label: NEXT_STEP
-19:40:41:147000 Status 0 from goto NEXT_STEP
-19:40:41:147000 Status 0 from upgrade_warm_start_completed
-19:40:41:147000 Status 0 from unofficial_rw_notification
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+19:30:25:641000 Status 0 from goto NEXT_STEP
+19:30:25:641000 Status 0 from upgrade_warm_start_completed
+19:30:25:641000 Status 0 from unofficial_rw_notification
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
 Goto to label: NEXT_STEP
-19:40:41:147000 Status 0 from goto NEXT_STEP
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+19:30:25:641000 Status 0 from goto NEXT_STEP
+Illegal call: sysdmp_init must be called first!19:30:25:641000 Status -1 from sysdmp_add
  ... will continue!
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status 0 from sysdmp_trigger_add
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status 0 from sysdmp_trigger_add
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+robayats synchronized (running) ...
+Message (cmd/msgType: 299/3) received from sid: 0
+Message (cmd/msgType: 299/3) received from sid: 0
+robcmdts setup active interfaces and ports ...
+robcmdts setup certificate store ...
+robcmdts create and setup server sockets ...
+robcmdts main loop ...
+19:30:25:641000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-19:40:41:147000 Status -1 from sysdmp_add_logfile
+19:30:25:651000 Status -1 from sysdmp_add_logfile
  ... will continue!
-Illegal call: sysdmp_init must be called first!19:40:41:147000 Status -1 from sysdmp_add
+Illegal call: sysdmp_init must be called first!19:30:25:651000 Status -1 from sysdmp_add
  ... will continue!
-19:40:41:147000 Status 0 from invoke fpevent_init
-19:40:41:147000 Status 0 from invoke fpcmd_init
-19:40:41:147000 Status 0 from invoke fpconsole_init
-19:40:41:147000 Status 0 from invoke fpdbg_init
-19:40:41:147000 Status 0 from invoke fpdevices_init
-19:40:41:147000 Status 0 from systemrun
+19:30:25:651000 Status 0 from invoke fpevent_init
+19:30:25:651000 Status 0 from invoke fpcmd_init
+19:30:25:651000 Status 0 from invoke fpconsole_init
+19:30:25:651000 Status 0 from invoke fpdbg_init
+19:30:25:651000 Status 0 from invoke fpdevices_init
+19:30:25:651000 Status 0 from systemrun
 System started
-19:40:41:147000 Status 0 from echo
-19:40:41:147000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/post_startup_action.cmd
+19:30:25:651000 Status 0 from echo
+19:30:25:651000 Status 0 from fileexist C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/RealController_Simulation/Virtual Controllers/CRB15000_5_95/internal/post_startup_action.cmd
 Goto to label: NO_POST_ACTION
-19:40:41:147000 Status 0 from goto NO_POST_ACTION
+19:30:25:651000 Status 0 from goto NO_POST_ACTION
 Script end: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/system/startup_with_axc.cmd
-19:40:41:147000 Status 0 from include NO_POST_ACTION
+19:30:25:651000 Status 0 from include NO_POST_ACTION
 Goto to label: END
-19:40:41:147000 Status 0 from goto END
+19:30:25:651000 Status 0 from goto END
 Script end: C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/system/startup.cmd
