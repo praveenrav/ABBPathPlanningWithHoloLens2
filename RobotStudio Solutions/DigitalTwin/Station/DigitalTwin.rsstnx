@@ -3717,7 +3717,7 @@
     </TaskSimulationConfiguration>
     <IRC5Controller ID="1131" Name="" Parent="9" StopAtBreakpoints="true">
       <UniqueId Value="{f1a5bac2-ea6c-4d61-9153-9261c2f7adad}" />
-      <SystemIdentity Value="{300C5D99-215A-4F51-A588-0CDC8BCE6E2C}" />
+      <SystemIdentity Value="{978CA065-8A6B-4EE9-A8EC-214834497AA0}" />
       <RAPIDData ID="1132" />
       <MechanicalUnits>
         <ObjectRef ID="2251" />

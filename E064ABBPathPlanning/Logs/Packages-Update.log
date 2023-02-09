@@ -56,3 +56,15 @@ The following packages were updated:
   com.unity.render-pipelines.universal from version 10.9.0 to 12.1.7
   com.unity.timeline from version 1.4.8 to 1.6.4
   com.unity.xr.openxr from version 1.4.2 to 1.5.3
+
+=== Thu Jan 26 17:21:38 2023
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.collab-proxy from version 1.17.6 to 1.17.7
+  com.unity.ide.rider from version 3.0.15 to 3.0.18
+  com.unity.ide.visualstudio from version 2.0.16 to 2.0.17
+  com.unity.render-pipelines.universal from version 12.1.7 to 12.1.9
+  com.unity.xr.openxr from version 1.5.3 to 1.6.0

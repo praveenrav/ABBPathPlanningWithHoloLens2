@@ -28,15 +28,15 @@ public class ZoneSlider : PinchSlider
 
     public void OnPointerDragged(SliderEventData sliderInfo)
     {
-        sliderIndexValue = (int)Mathf.Ceil(sliderInfo.NewValue * 10);
+        sliderIndexValue = (int)Mathf.Ceil(sliderInfo.NewValue * 15); 
         updateLabel();
     }
 
     public void updateLabel()
     {
-        if (sliderIndexValue == 10)
+        if (sliderIndexValue == 15)
         {
-            sliderIndexValue = 9;
+            sliderIndexValue = 14;
         }
 
         zoneVal = zone_vals[sliderIndexValue];

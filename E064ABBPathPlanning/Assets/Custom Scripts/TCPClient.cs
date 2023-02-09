@@ -298,7 +298,7 @@ public class TCPClient : MonoBehaviour
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Going backward!";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: B-T";
         }
-        else if (serverMessage == "ROTATING_TCP")
+        else if (serverMessage == "CHANGING_TCP")
         {
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Updating TCP!";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: U-T";
@@ -313,9 +313,9 @@ public class TCPClient : MonoBehaviour
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Backward movement not possible.";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: B-F";
         }
-        else if (serverMessage == "ROTATION_NOT_POSSIBLE")
+        else if (serverMessage == "TCPCHANGE_NOT_POSSIBLE")
         {
-            dataPointHolder.pathViabilityLabel.text = "Path Viability: Updating current position not possible!";
+            dataPointHolder.pathViabilityLabel.text = "Path Viability: Updating TCP not possible!";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: U-F";
         }
         else if(serverMessage.Substring(0, 3) == "PTP")
@@ -380,9 +380,9 @@ public class TCPClient : MonoBehaviour
         clientMessLabel.text = "Client Message: " + clientMessage;
     }
 
-    public void changeCurRot()
+    public void changeTCP()
     {
-        string clientMessage = "ROTATE_TCP";
+        string clientMessage = "CHANGE_TCP";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: " + clientMessage;
     }
@@ -423,9 +423,11 @@ public class TCPClient : MonoBehaviour
         }
 
         clientMessage += "@";
-        clientMessage += speedSlider.speedVal.ToString();
+        clientMessage += speedSlider.sliderIndexValue;
+        //clientMessage += speedSlider.speedVal.ToString();
         clientMessage += "%";
-        clientMessage += zoneSlider.zoneVal.ToString();
+        clientMessage += zoneSlider.sliderIndexValue;
+        //clientMessage += zoneSlider.zoneVal.ToString();
         clientMessage += "%";
         clientMessage += dataPointHolder.pointCounter.ToString();
         clientMessage += "%";

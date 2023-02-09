@@ -34,30 +34,34 @@ namespace PCSDKApplication
         public Bool completePathTraversalBackBool;
         public Bool goForwardBool;
         public Bool goBackwardBool;
-        public Bool changeTCPOrientBool;
+        public Bool changeTCPBool;
         public Bool isFirstBool;
         public Bool isClearedBool;
         public Bool isHomePosReset;
+        public Num speedNum; // ABB num variable used to indicate the index of the desired speed value in the RAPID speeddata array
+        public Num zoneNum; // ABB num variable used to indicate the index of the desired zone value in the RAPID zonedata array
         public Num num_targets; // ABB num variable used to indicate the number of inputted coordinates
         public Num ptpIndexABB; // ABB num variable used to indicate the index of the next point to be traversed when point-to-point mode is enabled
         public RobTarget initRobotPos;
-        public ABB.Robotics.Controllers.RapidDomain.String speed_RAPID; // ABB string used to indicate the value of the speed parameter
-        public ABB.Robotics.Controllers.RapidDomain.String zone_RAPID; // ABB string used to indicate the value of the zone parameter
 
         // TCP Message Booleans:
-
         public bool connectedToController1 = false;
         public bool connectedToController2 = false;
         public bool startedRAPIDProgram1 = false;
         public bool startedRAPIDProgram2 = false;
         public bool isPathViable = false;
 
+        // Error message strings:
         public string contrErrMess = "";
         public string rapidErrMess = "";
 
+        public int speedInt; // Integer representing index of the speed value in the speed value array
+        public int zoneInt; // Integer representing index of the zone value in the zone value array
+
         public int ptpIndex = 1; // Index representing the next point to traverse to
-        public int total_num; // Total number of input coordinates
-        public int total_count;
+        public int total_num; // Total number of input coordinates as obtained by the Unity client
+        public int total_count; // Total number of input coordinates
+        
 
         public ABBInterface(MainWindow mainWin)
         {
@@ -73,32 +77,33 @@ namespace PCSDKApplication
             }
             else
             {
-                connectToControllers();
+                connectToControllers(); // Connects to the real and virtual ABB GoFa controllers
             }
 
 
             if (connectedToController1 && connectedToController2)
             {
                 StartRapidProgram(0); // Starts RAPID Program for real-life ABB GoFa
-                Thread.Sleep(1000);
+                Thread.Sleep(1000); // Causes a 1 second delay between the initiation of the RAPID programs on the two controllers (to allow for the home position on the digital twin to be properly set)
                 StartRapidProgram(1); // Starts RAPID Program for digital twin
 
                 if (startedRAPIDProgram1 && startedRAPIDProgram2)
                 {
-                    mainWindow.tcpServer.SendMessage("PROCESS_STARTED");
-                    mainWindow.servMessLabel.Text = "PROCESS_STARTED";
+                    mainWindow.tcpServer.SendMessage("PROCESS_STARTED"); // Sending message to Unity client
+                    mainWindow.servMessLabel.Text = "PROCESS_STARTED"; // Updating UI
+
                     setInitDigitalTwinPos(); // Sets the initial position of the digital twin
                 }
                 else
                 {
-                    mainWindow.tcpServer.SendMessage("ERR " + rapidErrMess);
-                    mainWindow.servMessLabel.Text = "Error with starting RAPID Program: " + rapidErrMess;
+                    mainWindow.tcpServer.SendMessage("ERR " + rapidErrMess); // Sending error message to Unity client
+                    mainWindow.servMessLabel.Text = "Error with starting RAPID Program: " + rapidErrMess; // Updating UI
                 }
             }
             else
             {
-                mainWindow.tcpServer.SendMessage("ERR " + contrErrMess);
-                mainWindow.servMessLabel.Text = contrErrMess;
+                mainWindow.tcpServer.SendMessage("ERR " + contrErrMess); // Sending error message to Unity client
+                mainWindow.servMessLabel.Text = contrErrMess; // Updating UI
             }
         }
 
@@ -232,7 +237,7 @@ namespace PCSDKApplication
                     // Attempts to connect to the controller:
                     try
                     {
-
+                        // If the first controller in the listview is the real ABB GoFa robot:
                         if (!selectContr1.IsVirtual)
                         {
                             this.controller1 = Controller.Connect(selectContr1.SystemId, ConnectionType.Standalone, false);
@@ -241,6 +246,7 @@ namespace PCSDKApplication
                             this.controller2 = Controller.Connect(selectContr2.SystemId, ConnectionType.Standalone, false);
                             this.controller2.Logon(UserInfo.DefaultUser);
                         }
+                        // If the first controller in the listview is the digital twin:
                         else
                         {
                             this.controller1 = Controller.Connect(selectContr2.SystemId, ConnectionType.Standalone, false);
@@ -254,7 +260,7 @@ namespace PCSDKApplication
                         // Operations that run when connected to the controller
                         if (this.controller1.Connected == true)
                         {
-                            connectedToController1 = true;
+                            connectedToController1 = true; // Sets controller connection boolean of the real, physical robot to true
 
                             // Updating UI:
                             mainWindow.contrConnectionStatus1.Text = "Connected";
@@ -264,7 +270,7 @@ namespace PCSDKApplication
 
                         if (this.controller2.Connected == true)
                         {
-                            connectedToController2 = true;
+                            connectedToController2 = true; // Sets controller connection boolean of the digital twin to true
 
                             // Updating UI:
                             mainWindow.contrConnectionStatus2.Text = "Connected";
@@ -406,7 +412,6 @@ namespace PCSDKApplication
                             // Conditional statement that runs if RAPID program was not able to be successfully started:
                             if (result.ToString() != "Ok")
                             {
-                                //MessageBox.Show("Start Failed: " + result.ToString());
                                 rapidErrMess = "Start Failed: " + result.ToString();
                             }
                             else
@@ -442,7 +447,6 @@ namespace PCSDKApplication
                         else
                         {
                             rapidErrMess = "You don't have the proper grants!";
-                            //MessageBox.Show("Error: You don't have the proper grants!");
                         }
 
                     }
@@ -450,18 +454,15 @@ namespace PCSDKApplication
                 else
                 {
                     rapidErrMess = "Automatic mode is required to start execution from a remote client.";
-                    //MessageBox.Show("Automatic mode is required to start execution from a remote client.");
                 }
             }
             catch (System.InvalidOperationException ex)
             {
                 rapidErrMess = "Mastership is held by another client." + ex.Message;
-                //MessageBox.Show("Mastership is held by another client." + ex.Message);
             }
             catch (System.Exception ex)
             {
                 rapidErrMess = "Unexpected error occurred: " + ex.Message;
-                //MessageBox.Show("Unexpected error occurred: " + ex.Message);
             }
         }
 
@@ -569,18 +570,18 @@ namespace PCSDKApplication
             {
 
                 // RAPID Data:
-                RapidData speedVal_RAPID = tRob1.GetRapidData("PointTraversal", "speedStr");
-                RapidData zoneVal_RAPID = tRob1.GetRapidData("PointTraversal", "zoneStr");
+                RapidData speedVal_RAPID = tRob1.GetRapidData("PointTraversal", "speedVal");
+                RapidData zoneVal_RAPID = tRob1.GetRapidData("PointTraversal", "zoneVal");
                 RapidData ptpIndex_RAPID = tRob1.GetRapidData("PointTraversal", "ptpIndex");
                 RapidData targetsNum_RAPID = tRob1.GetRapidData("PointTraversal", "targetsNum");
                 RapidData tgPos_RAPID = tRob1.GetRapidData("PointTraversal", "tgPos");
                 RapidData tgRot_RAPID = tRob1.GetRapidData("PointTraversal", "tgRot");
 
                 ///*** Setting Parameter + Setting Values: ***///
-                speed_RAPID.Value = mainWindow.speedBox.Text; // RAPID String object
-                zone_RAPID.Value = mainWindow.zoneBox.Text; // RAPID String object
+                speedNum.Value = speedInt; // RAPID Num Object
+                zoneNum.Value = zoneInt; // RAPID Num Object
 
-                if ((speedVal_RAPID.Value is ABB.Robotics.Controllers.RapidDomain.String) && (zoneVal_RAPID.Value is ABB.Robotics.Controllers.RapidDomain.String) && (ptpIndex_RAPID.Value is Num) && (targetsNum_RAPID.Value is Num))
+                if ((speedVal_RAPID.Value is Num) && (zoneVal_RAPID.Value is Num) && (ptpIndex_RAPID.Value is Num) && (targetsNum_RAPID.Value is Num))
                 {
                     using (Mastership m = Mastership.Request(controller.Rapid))
                     {
@@ -588,8 +589,8 @@ namespace PCSDKApplication
 
                         if (uas.CheckDemandGrant(Grant.ModifyRapidDataValue) && uas.CheckDemandGrant(Grant.ModifyRapidPosition))
                         {
-                            speedVal_RAPID.Value = speed_RAPID;
-                            zoneVal_RAPID.Value = zone_RAPID;
+                            speedVal_RAPID.Value = speedNum;
+                            zoneVal_RAPID.Value = zoneNum;
                             ptpIndex_RAPID.Value = ptpIndexABB;
                             targetsNum_RAPID.Value = num_targets;
                         }
@@ -809,11 +810,6 @@ namespace PCSDKApplication
                                 goBackwardBool.Value = true;
                                 goBackward_RAPID.Value = goBackwardBool;
                             }
-                            else
-                            {
-
-                            }
-
 
                         }
                     }
@@ -821,17 +817,17 @@ namespace PCSDKApplication
             }
         }
 
-        public void changeTCPOrient()
+        public void changeTCP()
         {
 
             // Running the path on the real controller:
             ABB.Robotics.Controllers.RapidDomain.Task tRob1 = controller1.Rapid.GetTask("T_ROB1");
             if (tRob1 != null)
             {
-                RapidData changeTCPOrient_RAPID = tRob1.GetRapidData("PointTraversal", "changeTCPOrient"); // Boolean from RAPID
-                RapidData isRotationViable_RAPID = tRob1.GetRapidData("PointTraversal", "isRotationViable");
+                RapidData changeTCP_RAPID = tRob1.GetRapidData("PointTraversal", "changeTCP"); // Boolean from RAPID
+                RapidData isTCPChangeViable_RAPID = tRob1.GetRapidData("PointTraversal", "isTCPChangeViable");
 
-                if (changeTCPOrient_RAPID.Value is Bool && isRotationViable_RAPID.Value is Bool)
+                if (changeTCP_RAPID.Value is Bool && isTCPChangeViable_RAPID.Value is Bool)
                 {
                     using (Mastership m = Mastership.Request(this.controller1.Rapid))
                     {
@@ -839,30 +835,30 @@ namespace PCSDKApplication
 
                         if (uas.CheckDemandGrant(Grant.ModifyRapidDataValue) && uas.CheckDemandGrant(Grant.ModifyRapidPosition))
                         {
-                            Bool isRotationViable_ABB = (Bool)isRotationViable_RAPID.Value;
-                            bool isRotationViable = isRotationViable_ABB.Value;
-                            if (isRotationViable)
+                            Bool isTCPChangeViable_ABB = (Bool)isTCPChangeViable_RAPID.Value;
+                            bool isTCPChangeViable = isTCPChangeViable_ABB.Value;
+                            if (isTCPChangeViable)
                             {
-                                changeTCPOrientBool.Value = true;
-                                changeTCPOrient_RAPID.Value = changeTCPOrientBool;
+                                changeTCPBool.Value = true;
+                                changeTCP_RAPID.Value = changeTCPBool;
 
                                 if (mainWindow.tcpServer.isConnected)
                                 {
-                                    mainWindow.tcpServer.SendMessage("ROTATING_TCP");
-                                    mainWindow.servMessLabel.Text = "ROTATING_TCP";
+                                    mainWindow.tcpServer.SendMessage("CHANGING_TCP");
+                                    mainWindow.servMessLabel.Text = "CHANGING_TCP";
                                 }
 
-                                mainWindow.pathViabilityLabelValue.Text = "R-T";
+                                mainWindow.pathViabilityLabelValue.Text = "U-T";
 
                             }
                             else
                             {
 
-                                mainWindow.pathViabilityLabelValue.Text = "R-F";
+                                mainWindow.pathViabilityLabelValue.Text = "U-F";
                                 if (mainWindow.tcpServer.isConnected)
                                 {
-                                    mainWindow.tcpServer.SendMessage("ROTATION_NOT_POSSIBLE");
-                                    mainWindow.servMessLabel.Text = "ROTATION_NOT_POSSIBLE";
+                                    mainWindow.tcpServer.SendMessage("TCPCHANGE_NOT_POSSIBLE");
+                                    mainWindow.servMessLabel.Text = "TCPCHANGE_NOT_POSSIBLE";
                                 }
 
                             }
@@ -876,10 +872,10 @@ namespace PCSDKApplication
             tRob1 = controller2.Rapid.GetTask("T_ROB1");
             if (tRob1 != null)
             {
-                RapidData changeTCPOrient_RAPID = tRob1.GetRapidData("PointTraversal", "changeTCPOrient"); // Boolean from RAPID
-                RapidData isRotationViable_RAPID = tRob1.GetRapidData("PointTraversal", "isRotationViable");
+                RapidData changeTCP_RAPID = tRob1.GetRapidData("PointTraversal", "changeTCP"); // Boolean from RAPID
+                RapidData isTCPChangeViable_RAPID = tRob1.GetRapidData("PointTraversal", "isTCPChangeViable");
 
-                if (changeTCPOrient_RAPID.Value is Bool && isRotationViable_RAPID.Value is Bool)
+                if (changeTCP_RAPID.Value is Bool && isTCPChangeViable_RAPID.Value is Bool)
                 {
                     using (Mastership m = Mastership.Request(this.controller2.Rapid))
                     {
@@ -887,119 +883,19 @@ namespace PCSDKApplication
 
                         if (uas.CheckDemandGrant(Grant.ModifyRapidDataValue) && uas.CheckDemandGrant(Grant.ModifyRapidPosition))
                         {
-                            Bool isRotationViable_ABB = (Bool)isRotationViable_RAPID.Value;
-                            bool isRotationViable = isRotationViable_ABB.Value;
-                            if (isRotationViable)
+                            Bool isTCPChangeViable_ABB = (Bool)isTCPChangeViable_RAPID.Value;
+                            bool isTCPChangeViable = isTCPChangeViable_ABB.Value;
+                            if (isTCPChangeViable)
                             {
-                                changeTCPOrientBool.Value = true;
-                                changeTCPOrient_RAPID.Value = changeTCPOrientBool;
+                                changeTCPBool.Value = true;
+                                changeTCP_RAPID.Value = changeTCPBool;
                             }
 
-
                         }
                     }
                 }
             }
         }
-
-        /*
-        private void CheckPathViability()
-        {
-            // Updates the data:
-            SendDataParamsRAPID(0);
-            SendDataParamsRAPID(1);
-
-
-            // Running the path on the virtual controller:
-            ABB.Robotics.Controllers.RapidDomain.Task tRob1 = controller2.Rapid.GetTask("T_ROB1");
-
-            if (tRob1 != null)
-            {
-                RapidData completeTraversal_RAPID = tRob1.GetRapidData("PointTraversal", "completeTraversal"); // Boolean from RAPID
-                RapidData pathViable_RAPID = tRob1.GetRapidData("PointTraversal", "isPathViable");
-
-                if (completeTraversal_RAPID.Value is Bool)
-                {
-                    using (Mastership m = Mastership.Request(controller2.Rapid))
-                    {
-                        UserAuthorizationSystem uas = controller2.AuthenticationSystem;
-
-                        if (uas.CheckDemandGrant(Grant.ModifyRapidDataValue) && uas.CheckDemandGrant(Grant.ModifyRapidPosition))
-                        {
-                            completePathTraversalBool.Value = true;
-                            completeTraversal_RAPID.Value = completePathTraversalBool;
-                            //this.start_flag_RAPID_virt.ValueChanged += new EventHandler<DataValueChangedEventArgs>(HandleStartFlagChanged);
-                            //this.start_flag_RAPID_virt.ValueChanged += HandleStartFlagChanged;
-                            
-                            // Waiting 7.5 seconds before checking the path:
-                            Thread.Sleep(7500);
-
-                            // Reads the path viability variable:
-                            pathViable = (Bool)pathViable_RAPID.Value;
-                            pathViabilityLabelValue.Text = pathViable.Value.ToString();
-                            isPathViable = pathViable.Value;
-
-                        }
-                    }
-                }
-
-            }
-        }
-
-                
-        private void executeValidatedCPTPath()
-        {
-            // Running the path on the real controller:
-            ABB.Robotics.Controllers.RapidDomain.Task tRob1 = controller1.Rapid.GetTask("T_ROB1");
-            if (tRob1 != null)
-            {
-                RapidData completeTraversal_RAPID = tRob1.GetRapidData("PointTraversal", "completeTraversal"); // Boolean from RAPID
-
-                if(completeTraversal_RAPID.Value is Bool)
-                {
-                    using (Mastership m = Mastership.Request(this.controller1.Rapid))
-                    {
-                        UserAuthorizationSystem uas = controller1.AuthenticationSystem;
-
-                        if (uas.CheckDemandGrant(Grant.ModifyRapidDataValue) && uas.CheckDemandGrant(Grant.ModifyRapidPosition))
-                        {
-                            completePathTraversalBool.Value = true;
-                            completeTraversal_RAPID.Value = completePathTraversalBool;
-
-                            ptpIndex = total_count + 1;
-                            ptpIndexLabel.Text = ptpIndex.ToString();
-                        }
-                    }
-                }
-            }
-
-            // Running the path on the virtual controller:
-            tRob1 = controller2.Rapid.GetTask("T_ROB1");
-            if (tRob1 != null)
-            {
-                RapidData completeTraversal_RAPID = tRob1.GetRapidData("PointTraversal", "completeTraversal"); // Boolean from RAPID
-                RapidData isRunningOnReal_RAPID = tRob1.GetRapidData("PointTraversal", "isRunningOnReal"); // isRunningOnReal boolean from RAPID
-
-                if (completeTraversal_RAPID.Value is Bool && isRunningOnReal_RAPID.Value is Bool)
-                {
-                    using (Mastership m = Mastership.Request(this.controller2.Rapid))
-                    {
-                        UserAuthorizationSystem uas = controller2.AuthenticationSystem;
-
-                        if (uas.CheckDemandGrant(Grant.ModifyRapidDataValue) && uas.CheckDemandGrant(Grant.ModifyRapidPosition))
-                        {
-                            isRunningOnRealFlag.Value = true;
-                            isRunningOnReal_RAPID.Value = isRunningOnRealFlag;
-
-                            completePathTraversalBool.Value = true;
-                            completeTraversal_RAPID.Value = completePathTraversalBool;
-                        }
-                    }
-                }
-            }
-
-        }
-        */
 
         public void completelyTraverseForward()
         {
@@ -1269,16 +1165,6 @@ namespace PCSDKApplication
             }
 
         }
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -36,7 +36,8 @@ namespace PCSDKApplication
         public string dataPoints;
         public string speedSetting;
         public string zoneSetting;
-
+        public string[] speedVals = { "v50", "v100", "v150", "v200", "v300", "v400", "v500", "v600", "v800", "v1000"};
+        public string[] zoneVals = { "fine", "z0", "z1", "z5", "z10", "z15", "z20", "z30", "z40", "z50", "z60", "z80", "z100", "z150", "z200"};
 
         public TCPServer(MainWindow mainWin)
         {
@@ -58,6 +59,8 @@ namespace PCSDKApplication
 
         public void ListenForData()
         {
+            /* Method to listen for messages from Unity client: */
+
             try
             {
                 serverABB = new TcpListener(localAddr, portNum);
@@ -113,6 +116,7 @@ namespace PCSDKApplication
 
         public void SendMessage(string serverMessage)
         {
+            /* Method to send messages to Unity client: */
 
             if (tcpClient == null)
             {
@@ -140,7 +144,7 @@ namespace PCSDKApplication
 
         public void processClientMessage(string clientMessage)
         {
-            // This method maps out the overall process flow of the path-planning operation:
+            /* This method maps out the overall process flow of the path-planning operation: */
 
             mainWindow.clientMessLabel.Text = clientMessage;
 
@@ -163,8 +167,10 @@ namespace PCSDKApplication
                     SendMessage("PROCESS_ENDED");
                     mainWindow.servMessLabel.Text = "PROCESS_ENDED";
                 }
+                // If client sends data:
                 else if (clientMessage[0].ToString() == "#")
                 {
+                    // Receives all data and sends data to both the real (or simulation of real) and virtual controllers
                     receiveDataParams(clientMessage);
                     mainWindow.abbInterface.SendDataParamsRAPID(0);
                     mainWindow.abbInterface.SendDataParamsRAPID(1);
@@ -178,9 +184,9 @@ namespace PCSDKApplication
                 {
                     mainWindow.abbInterface.goBackward();
                 }
-                else if (clientMessage == "ROTATE_TCP")
+                else if (clientMessage == "CHANGE_TCP")
                 {
-                    mainWindow.abbInterface.changeTCPOrient();
+                    mainWindow.abbInterface.changeTCP();
                 }
                 else if (clientMessage == "RUN_CPT")
                 {
@@ -189,24 +195,6 @@ namespace PCSDKApplication
                     mainWindow.abbInterface.checkPTPIndexRAPID();
                     SendMessage("PTP" + mainWindow.abbInterface.ptpIndex.ToString());
 
-                    /*
-                    isPathViable = false;
-                    CheckPathViability();
-
-                    if (isPathViable)
-                    {
-                        executeValidatedCPTPath();
-                        isPathViable = false; // Resets path viability
-
-                        SendMessage("CPT-T");
-                        servMessLabel.Text = "CPT-T";
-                    }
-                    else
-                    {
-                        SendMessage("CPT-F");
-                        servMessLabel.Text = "CPT-F";
-                    }
-                    */
                 }
                 else if (clientMessage == "RUN_CPT_BACK")
                 {
@@ -215,11 +203,6 @@ namespace PCSDKApplication
                     mainWindow.abbInterface.checkPTPIndexRAPID();
                     SendMessage("PTP" + mainWindow.abbInterface.ptpIndex.ToString());
 
-                    /*
-                    completelyTraverseBack();
-                    SendMessage("CPTB-T");
-                    servMessLabel.Text = "CPTB-T";
-                    */
                 }
                 else if (clientMessage == "RESET_HOME")
                 {
@@ -243,18 +226,18 @@ namespace PCSDKApplication
 
             string[] splitDataParams; // String array representing the data + parameters split into two different elements in an array
 
-            string paramSettings;
+            string paramSettings; // String representing paramter information
             string[] splitParams; // String array representing parameters split into different elements in an array
 
             string[] splitData; // String array representing string coordinate data split into different elements in an array
 
-            string curCoor;
-            string[] splitCoorData;
+            string curCoor; // String representing each data point
+            string[] splitCoorData; // Coordinate data divided into corresponding positional and rotational components
 
-            string curPos;
+            string curPos; // String representing position data of current point
             string[] curPosArray;  // String array representing a single data point whose individual spatial coordinates are separated into different elements in an array
 
-            string curRot;
+            string curRot; // String representing rotation data of current point
             string[] curRotArray; // String array representing a single data point whose individual rotational coordinates are separated into different elements in an array
 
             char[] dataDelimiters = { '[', ']' };
@@ -275,7 +258,6 @@ namespace PCSDKApplication
 
                 for (int i = 0; i < (splitData.Length - 1); i++)
                 {
-
                     curCoor = splitData[i];
                     splitCoorData = curCoor.Split('/');
 
@@ -306,18 +288,18 @@ namespace PCSDKApplication
                 splitParams = paramSettings.Split('%');
 
                 // Receiving parameter information:
-                speedSetting = splitParams[0];
-                zoneSetting = splitParams[1];
+                Int32.TryParse(splitParams[0], out mainWindow.abbInterface.speedInt);
+                Int32.TryParse(splitParams[1], out mainWindow.abbInterface.zoneInt);
                 Int32.TryParse(splitParams[2], out mainWindow.abbInterface.total_num);
                 Int32.TryParse(splitParams[3], out mainWindow.abbInterface.ptpIndex);
 
                 // Updating UI:
-                mainWindow.speedBox.Text = speedSetting;
-                mainWindow.zoneBox.Text = zoneSetting;
+                mainWindow.speedBox.Text = speedVals[mainWindow.abbInterface.speedInt];
+                mainWindow.zoneBox.Text = zoneVals[mainWindow.abbInterface.zoneInt];
                 mainWindow.pointCounterLabelValue.Text = splitParams[2];
                 mainWindow.ptpIndexLabel.Text = splitParams[3];
 
-                SendMessage("Received data!");
+                SendMessage("Received data!"); // Sends confirmation message to Unity client
 
             }
         }

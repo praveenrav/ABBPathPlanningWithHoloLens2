@@ -11,6 +11,7 @@
           </Value>
         </Attribute>
       </Attributes>
+      <UniqueId Value="{fa9dce7f-73f1-48ee-8215-33ff25818bc0}" />
       <AssemblyRootRef ID="1128" />
       <GraphicsRootRef ID="5" />
       <IRC5ControllerRootRef ID="9" />
@@ -7419,7 +7420,7 @@
         <Double Value="0" />
         <Double Value="0" />
         <Double Value="0" />
-        <Double Value="0.523598790168762" />
+        <Double Value="0.523598775598299" />
         <Double Value="0" />
       </JointValues>
       <CalibFrames />
@@ -7585,10 +7586,10 @@
       <UniqueId Value="{59fffe1c-587e-421c-98e5-a8adb96762f2}" />
       <Definition ID="18" DocID="1" />
       <Transform>
-        <RowX X="0.866025396499205" Y="0" Z="-0.500000012618394" W="0" />
+        <RowX X="0.866025403784437" Y="0" Z="-0.500000000000003" W="0" />
         <RowY X="0" Y="1" Z="0" W="0" />
-        <RowZ X="0.500000012618394" Y="0" Z="0.866025396499205" W="0" />
-        <RowT X="-0.346531946689089" Y="0" Z="0.344725206197795" W="1" />
+        <RowZ X="0.500000000000003" Y="0" Z="0.866025403784437" W="0" />
+        <RowT X="-0.346531939778686" Y="0" Z="0.344725194300546" W="1" />
       </Transform>
       <Source Value="" />
       <SourceFileTime HighPart="0" LowPart="0" />
@@ -7615,10 +7616,10 @@
       <UniqueId Value="{153ed0bd-4d71-4cf7-947f-7232ef48d716}" />
       <Definition ID="19" DocID="1" />
       <Transform>
-        <RowX X="0.866025396499205" Y="0" Z="-0.500000012618394" W="0" />
+        <RowX X="0.866025403784437" Y="0" Z="-0.500000000000003" W="0" />
         <RowY X="0" Y="1" Z="0" W="0" />
-        <RowZ X="0.500000012618394" Y="0" Z="0.866025396499205" W="0" />
-        <RowT X="-0.346531946689089" Y="0" Z="0.344725206197795" W="1" />
+        <RowZ X="0.500000000000003" Y="0" Z="0.866025403784437" W="0" />
+        <RowT X="-0.346531939778686" Y="0" Z="0.344725194300546" W="1" />
       </Transform>
       <Source Value="" />
       <SourceFileTime HighPart="0" LowPart="0" />
@@ -7652,16 +7653,19 @@
     <ComponentInstance ID="2261" Name="gripper_rg6" Parent="1128" PickingEnabled="true" Detectable="true" PhysicsMotionControl="0">
       <Definition ID="2260" />
       <Transform>
-        <RowX X="-0.500000012618394" Y="0" Z="-0.866025396499205" W="0" />
+        <RowX X="-0.500000000000003" Y="0" Z="-0.866025403784437" W="0" />
         <RowY X="0" Y="1" Z="0" W="0" />
-        <RowZ X="0.866025396499205" Y="0" Z="-0.500000012618394" W="0" />
-        <RowT X="0.597468566055893" Y="0" Z="0.837782030445477" W="1" />
+        <RowZ X="0.866025403784437" Y="0" Z="-0.500000000000003" W="0" />
+        <RowT X="0.59746856578223" Y="0" Z="0.837782032302753" W="1" />
       </Transform>
       <Source Value="" />
       <SourceFileTime HighPart="0" LowPart="0" />
       <ComponentType Value="Part" />
       <ClipPlane ID="-1" />
-      <Skeleton />
+      <Skeleton>
+        <Bones />
+        <InverseBindMatrices />
+      </Skeleton>
       <PhysicsMaterial SurfaceViscosity="5E-09" SurfaceRoughness="0.7" SurfaceAdhesion="0" SurfaceAdhesionOverlap="0" Density="7800" Damping="0.05" PoissonsRatio="0.3" Restitution="0.5" YoungsModulus="200000000000" CableDamping="0" CableYoungsModulus="0" />
       <PhysicsGeometry UseOriginal="false" />
       <PhysicsSurfaceVelocity Speed="0" Enabled="false">

@@ -17,7 +17,7 @@ using Handedness = Microsoft.MixedReality.Toolkit.Utilities.Handedness;
 
 public class PointPicking : MonoBehaviour
 {
-    private bool isTesting = true;
+    private bool isTesting = true; // Boolean indicating whether the system is being tested on the physical ABB GoFa robot (false) or purely with simulations (true)
 
     // These represent the UI elements on the DataPointHolder slate:
     [SerializeField]

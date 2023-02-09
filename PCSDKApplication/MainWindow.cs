@@ -19,33 +19,40 @@ namespace PCSDKApplication
 {
     public partial class MainWindow : Form
     {
-        public TCPServer tcpServer;
-        public ABBInterface abbInterface;
+        public TCPServer tcpServer; // Instance of the class representing the TCP server
+        public ABBInterface abbInterface; // Instance of the class representing the interface between the Windows Form App and ABB controllers
 
-        public NetworkScanner scanner = null;
-        public NetworkWatcher networkwatcher = null;
+        public NetworkScanner scanner = null; // Network scanner variable
+        public NetworkWatcher networkwatcher = null; // Network watcher variable
 
+        // Boolean indicating whether the physical ABB robot or the digital version of the real controller are being used:
+        // Select FALSE if testing is performed on the REAL robot
+        // Select TRUE if testing is performed using the digital version of the real controller
         public bool isTesting = true;
 
 
         public MainWindow()
         {
             InitializeComponent();
+         
+            // Initializing TCP Server and ABB Interface:
             abbInterface = new ABBInterface(this);
             tcpServer = new TCPServer(this);
-            findControllersFirst();
+
+            findControllersFirst(); // Scans the network for controllers
 
         }
 
         public void tcpButton_Click(object sender, EventArgs e)
         {
-            tcpServer.establishServer();
+            tcpServer.establishServer(); // Establishes the TCP Server
         }
 
 
-        // Windows Form App Methods:
         public void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Method to indicate to client that the TCP server is being closed, and disconnecting from all ABB controllers accordingly
+
             if(tcpServer.isConnected)
             {
                 tcpServer.SendMessage("DISCONNECTING");
@@ -64,11 +71,14 @@ namespace PCSDKApplication
 
         public void findControllersFirst()
         {
+            // Method to scan the network for ABB controllers
+
             scanner = new NetworkScanner();
             scanner.Scan(); // Scans the network for ABB controllers
             abbInterface.controllers = scanner.Controllers; // Collects all available controllers on the network
             ListViewItem item = null;
 
+            // Adds each controller onto the controller listview in the form
             foreach(ControllerInfo controllerInfo in abbInterface.controllers)
             {
                 item = new ListViewItem(controllerInfo.IPAddress.ToString());
@@ -81,7 +91,7 @@ namespace PCSDKApplication
                 this.listView1.Items.Add(item);
                 item.Tag = controllerInfo;
 
-
+                // Adding each controller to the event handler:
                 this.networkwatcher = new NetworkWatcher(scanner.Controllers);
                 this.networkwatcher.Found += new
                 EventHandler<NetworkWatcherEventArgs>(HandleFoundEvent);
@@ -95,6 +105,8 @@ namespace PCSDKApplication
 
         public void savePointsButton_Click(object sender, EventArgs e)
         {
+            // Method assigned to the button to save any point data that are entered through the form
+
             if (xBoxPos.Text != null && yBoxPos.Text != null && zBoxPos.Text != null)
             {
                 decimal d1;
@@ -131,6 +143,8 @@ namespace PCSDKApplication
 
         public void positionListView_DoubleClick(object sender, EventArgs e)
         {
+            // Method to allow for position point data to be edited by simply clicking on its corresponding position in the point listview 
+
             ListViewItem item = this.positionListView.SelectedItems[0];
             if (item != null)
             {

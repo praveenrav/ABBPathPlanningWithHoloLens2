@@ -206,10 +206,10 @@ MODULE PointTraversal
 
             ! Looping forward through given targets:
             WHILE(whileLoopCPT) DO
-                isNextPointViable_CPT := checkPointViability(create_robtarget(tgPos{ptpIndex + 1}, tgRot{ptpIndex + 1}));
+                isNextPointViable_CPT := checkPointViability(create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex}));
                 
                 IF isNextPointViable_CPT THEN
-                    MoveJ create_robtarget(tgPos{ptpIndex + 1}, tgRot{ptpIndex + 1}),getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+                    MoveJ create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex}),getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
                     
                     IF ptpIndex < targetsNum THEN
                         ptpIndex := ptpIndex + 1; ! Incrementing the ptpIndex
