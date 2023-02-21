@@ -8,13 +8,13 @@ MODULE PointTraversal
     VAR num zoneVal; ! Zone parameter index
     
     PERS pos tgPos{100};    ! Position array containing all Cartesian positions inputted by user
-    PERS orient tgRot{100};
+    PERS orient tgRot{100}; ! Orientation array containing all point rotation data inputted by user
     VAR num targetsNum;    ! Total number of targets within the position array
     
     VAR num ptpIndex:=1; ! Represents the index of the NEXT point to traverse to
     VAR robtarget initialPosPTP; ! Represents the initial position of the path
-    VAR bool isFirst:=FALSE; ! Boolean to indicate 
-    VAR bool isCleared:=TRUE;
+    VAR bool isFirst:=FALSE; ! Boolean to indicate whether or not the RAPID program had just started
+    VAR bool isCleared:=TRUE; ! Boolean to reset the home position and PTP index when data is requested to be cleared
     
     VAR robtarget nextRobTarget; ! Represents the next robtarget in the path
     VAR bool isTargetViableF:=FALSE; ! Represents whether or not the next robtarget in the path is viable

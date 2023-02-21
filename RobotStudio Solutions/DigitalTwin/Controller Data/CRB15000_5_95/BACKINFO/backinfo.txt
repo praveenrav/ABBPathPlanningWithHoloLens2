@@ -34,7 +34,6 @@ EIO.cfg
 
 
 >>TASK2: (T_ROB1,,)
-PROGMOD/Wizard_LoadData.modx @ 
 SYSMOD/Wizard_Params.sysx @ 
 PROGMOD/PointTraversal.modx @ 
 

@@ -8,7 +8,7 @@ MODULE PointTraversal
     VAR num zoneVal; ! Zone parameter index
     
     PERS pos tgPos{100};    ! Position array containing all Cartesian positions inputted by the user
-    PERS orient tgRot{100};    ! Array containing all Cartesian orientations inputted by the user
+    PERS orient tgRot{100}; ! Orientation array containing all point rotation data inputted by user
     VAR num targetsNum;    ! Total number of targets within the position array
     
     VAR num ptpIndex:=1; ! Represents the index of the NEXT point to traverse to

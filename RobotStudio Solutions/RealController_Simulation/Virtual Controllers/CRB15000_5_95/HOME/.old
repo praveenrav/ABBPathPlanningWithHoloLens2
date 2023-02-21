@@ -1,5 +1,5 @@
 MODULE PointTraversal
-    PERS tooldata gripper := [TRUE, [[0,0,250],[1,0,0,0]],[1.25,[0,0,90],[1,0,0,0],0,0,0]];    
+    PERS tooldata gripper := [TRUE, [[0,0,250],[1,0,0,0]],[1.25,[0,0,90],[1,0,0,0],0,0,0]]; ! Gripper data
    
     VAR speeddata speedVals{10}:=[v50, v100, v150, v200, v300, v400, v500, v600, v800, v1000]; ! Array of speed values
     VAR zonedata zoneVals{15}:=[fine, z0, z1, z5, z10, z15, z20, z30, z40, z50, z60, z80, z100, z150, z200]; ! Array of zone values
@@ -12,42 +12,39 @@ MODULE PointTraversal
     VAR num targetsNum;    ! Total number of targets within the position array
     
     VAR num ptpIndex:=1; ! Represents the index of the NEXT point to traverse to
-    VAR robtarget initialPosPTP;
-    VAR bool isFirst:=TRUE;
-    VAR bool isCleared:=TRUE;
+    VAR robtarget initialPosPTP; ! Represents the initial position of the path
+    VAR bool isFirst:=TRUE; ! Boolean to indicate whether or not the RAPID program had just started
+    VAR bool isCleared:=TRUE; ! Boolean to reset the home position and PTP index when data is requested to be cleared
     
-    VAR robtarget nextRobTarget;
-    VAR bool isTargetViableF:=FALSE;
-    VAR bool goForward:=FALSE;
+    VAR robtarget nextRobTarget; ! Represents the next robtarget in the path
+    VAR bool isTargetViableF:=FALSE; ! Represents whether or not the next robtarget in the path is viable
+    VAR bool goForward:=FALSE; ! Boolean to command the robot to traverse forwards
 
-    VAR robtarget lastRobTarget;    
-    VAR bool isTargetViableB:=FALSE;
-    VAR bool goBackward:=FALSE;
+    VAR robtarget lastRobTarget; ! Represents the previous robtarget in the path   
+    VAR bool isTargetViableB:=FALSE; ! Represents whether or not the previous robtarget in the path is viable
+    VAR bool goBackward:=FALSE; ! Boolean to command the robot to traverse backwards
 
-    VAR bool completeTraversal:=FALSE;
-    VAR bool isNextPointViable_CPT:=FALSE;
-    VAR bool whileLoopCPT := TRUE;
+    VAR bool completeTraversal:=FALSE; ! Boolean enabling complete forwards path traversal
+    VAR bool isNextPointViable_CPT:=FALSE; ! Boolean indicating whether or not the next point in the path is viable when completely traversing the path
+    VAR bool whileLoopCPT := TRUE; ! Boolean enabling the while loop commanding the complete path traversal
 
-    VAR bool completeTraversalBack:=FALSE;
-    VAR bool isNextPointViable_CPTB:=FALSE;
-    VAR robtarget nextRobTarg_CPTB;
-    VAR bool whileLoopCPTB := TRUE;
+    VAR bool completeTraversalBack:=FALSE; ! Boolean enabling complete backwards path traversal
+    VAR bool isNextPointViable_CPTB:=FALSE; ! Boolean indicating whether or not the next point in the path is viable when completely traversing the path backwards
+    VAR robtarget nextRobTarg_CPTB; ! Contains the next robtarget when completely traversing the path backwards
+    VAR bool whileLoopCPTB := TRUE; ! Boolean enabling the while loop commanding the backwards complete path traversal
     
-    VAR bool changeTCP:=FALSE;
-    VAR robtarget curRobTarget;
-    VAR bool isTCPChangeViable:=FALSE;
+    VAR bool changeTCP:=FALSE; ! Boolean to command the change the TCP's position and/or orientation
+    VAR robtarget curRobTarget; ! Contains robtarget corresponding to current TCP position and orientation
+    VAR bool isTCPChangeViable:=FALSE; ! Boolean indicating viability of changing TCP's position and/or orientation
     
-    VAR bool isHomePosReset:=FALSE;
+    VAR bool isHomePosReset:=FALSE; ! Boolean commanding the reset of the robot's home position of the path
     
-    VAR string speedStr;    ! Speed parameter
-    VAR string zoneStr;    ! Zone parameter
     VAR string moveCommand;    ! Move behavior (MoveJ vs MoveL vs etc.)
     VAR jointtarget curJointPos;    ! Contains the corresponding joint angles for each given robtarget
     VAR errnum errJoint;    ! Contains the error message (if any) produced by CalcJointT()
 
     FUNC robtarget create_robtarget(pos position, orient rotation)
         RETURN [position,rotation,[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-        !RETURN [position,[0.190808996,0,0.981627183,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
     ENDFUNC
 
     FUNC bool checkPointViability(robtarget cur_robtarget)
