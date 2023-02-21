@@ -1,76 +1,3 @@
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates.cpp, 53	2022-12-13 02:58:34: Starting new log ***********************. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates.cpp, 54	[INFO] Finalize the installation. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1013	Recreate 'C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/temp/INSTALL'
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1027	[INFO] InstallSystem starts. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1031	[INFO] Create system structures. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1308	[INFO] Building system structure in 'C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1324	[INFO] Building folders under 'C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1352	GetProdsAndFeaturesFromCtrlrsfFile(), file path = 'C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/controller.rsf'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1396	GetProdsAndFeaturesFromCtrlrsfFile(), got 4 products. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 10 features for product 'RobotControl'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'RobotOS'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'Robots'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'Wizard'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1058	[INFO] Get information of product 'RobotControl'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1067	[INFO] Get all features and feature data of product 'RobotControl'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 326	[INFO] Number of features for product 'RobotControl' is 12.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 329	[INFO] Get information for each feature.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 370	[INFO] No KeyValue found for feature 'abb.robotics.robotcontrol.options.safemove.smpnp' in file C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/abb.robotics.robotcontrol.rmf.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 370	[INFO] No KeyValue found for feature 'abb.robotics.robotcontrol.options.nocat0stop' in file C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1/abb.robotics.robotcontrol.rmf.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1058	[INFO] Get information of product 'RobotOS'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1067	[INFO] Get all features and feature data of product 'RobotOS'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 326	[INFO] Number of features for product 'RobotOS' is 1.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 329	[INFO] Get information for each feature.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 370	[INFO] No KeyValue found for feature 'abb.robotics.robotos' in file C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotOS_5.0.1/abb.robotics.robotos.rmf.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1058	[INFO] Get information of product 'Robots'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1067	[INFO] Get all features and feature data of product 'Robots'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 326	[INFO] Number of features for product 'Robots' is 2.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 329	[INFO] Get information for each feature.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1058	[INFO] Get information of product 'Wizard'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1067	[INFO] Get all features and feature data of product 'Wizard'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 303	[INFO] No default selected feature found in file 'C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/Wizard_1.4.1/abb.cn.robotics.wizard_1.4.1.rmf'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 326	[INFO] Number of features for product 'Wizard' is 1.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 329	[INFO] Get information for each feature.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1674	[INFO] Product path 'C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotControl_7.6.1'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1699	[INFO] Product path 'C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/RobotOS_5.0.1'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1699	[INFO] Product path 'C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/Robots_1.6.1'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1699	[INFO] Product path 'C:/Users/praveen.ravishankar/AppData/Local/ABB/RobotWare/Wizard_1.4.1'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1721	[WARNING] Failed to get serial number or empty serial number. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1779	[INFO] Generating key.id, writing header.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 2005	[INFO] Generate file 'C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/system.xml'.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 2034	[WARNING] Unable to get serial number or empty serial number. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1131	All actions done, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 2284	[INFO] Installation is complete. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 878	[INFO] Need to update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 919	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been updated. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 954	[INFO] Failed to get RWI version. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1352	GetProdsAndFeaturesFromCtrlrsfFile(), file path = 'C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/controller.rsf'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1396	GetProdsAndFeaturesFromCtrlrsfFile(), got 4 products. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 10 features for product 'RobotControl'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'RobotOS'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'Robots'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'Wizard'. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1889	[INFO] ResetAddInData status =0.
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
-D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
@@ -86,12 +13,30 @@ D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetP
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1889	[INFO] ResetAddInData status =0.
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1352	GetProdsAndFeaturesFromCtrlrsfFile(), file path = 'C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/controller.rsf'. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1396	GetProdsAndFeaturesFromCtrlrsfFile(), got 4 products. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 10 features for product 'RobotControl'. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'RobotOS'. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'Robots'. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'Wizard'. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1889	[INFO] ResetAddInData status =0.
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1352	GetProdsAndFeaturesFromCtrlrsfFile(), file path = 'C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/controller.rsf'. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1396	GetProdsAndFeaturesFromCtrlrsfFile(), got 4 products. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 10 features for product 'RobotControl'. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'RobotOS'. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'Robots'. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1462	GetProdsAndFeaturesFromCtrlrsfFile(), got 1 features for product 'Wizard'. 
+D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 1889	[INFO] ResetAddInData status =0.
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 979	[INFO] File C:/Users/praveen.ravishankar/Desktop/ABBPathPlanningProject/RobotStudio Solutions/DigitalTwin/Virtual Controllers/CRB15000_5_95/internal/prodinfo.xml has been created, status = 0. 
 D:\BUILDAGENTS\SEABB-IS-13900.5\_work\178\s\DpUpdates\DpUpdates_i.cpp, 849	[INFO] Update prodinfo.xml. 

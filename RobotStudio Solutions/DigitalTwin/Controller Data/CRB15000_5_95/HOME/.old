@@ -1,8 +1,8 @@
 MODULE PointTraversal
     PERS tooldata gripper := [TRUE, [[0,0,250],[1,0,0,0]],[1.25,[0,0,90],[1,0,0,0],0,0,0]]; ! gripper data   
 
-    CONST speeddata speedVals{10}:=[v50, v100, v150, v200, v300, v400, v500, v600, v800, v1000]; ! Array of speed values
-    CONST zonedata zoneVals{15}:=[fine, z0, z1, z5, z10, z15, z20, z30, z40, z50, z60, z80, z100, z150, z200]; ! Array of zone values
+    VAR speeddata speedVals{10}:=[v50, v100, v150, v200, v300, v400, v500, v600, v800, v1000]; ! Array of speed values
+    VAR zonedata zoneVals{15}:=[fine, z0, z1, z5, z10, z15, z20, z30, z40, z50, z60, z80, z100, z150, z200]; ! Array of zone values
 
     VAR num speedVal; ! Speed parameter index
     VAR num zoneVal; ! Zone parameter index
@@ -33,9 +33,9 @@ MODULE PointTraversal
     VAR robtarget nextRobTarg_CPTB;
     VAR bool whileLoopCPTB := TRUE;
     
-    VAR bool changeTCPOrient:=FALSE;
+    VAR bool changeTCP:=FALSE;
     VAR robtarget curRobTarget;
-    VAR bool isRotationViable:=FALSE;
+    VAR bool isTCPChangeViable:=FALSE;
     
     VAR bool isHomePosReset:=FALSE;
     
@@ -75,66 +75,6 @@ MODULE PointTraversal
         RETURN isTargetViable;
     ENDFUNC
 
-
-    ! EDIT THIS TO SIMPLY RECEIVE INDEX FROM PC SDK APPLICATION AND INDEX PARAMETERS FROM PARAMETER ARRAYS:
-    ! Ex: speedVal := speedVals{ind}
-    FUNC speeddata getSpeed(string speedValStr)
-        IF speedValStr="v50" THEN
-            RETURN v50;
-        ELSEIF speedValStr="v100" THEN
-            RETURN v100;
-        ELSEIF speedValStr="v150" THEN
-            RETURN v150;
-        ELSEIF speedValStr="v200" THEN
-            RETURN v200;
-        ELSEIF speedValStr="v300" THEN
-            RETURN v300;
-        ELSEIF speedValStr="v400" THEN
-            RETURN v400;
-        ELSEIF speedValStr="v500" THEN
-            RETURN v500;
-        ELSEIF speedValStr="v600" THEN
-            RETURN v600;
-        ELSEIF speedValStr="v800" THEN
-            RETURN v800;
-        ELSEIF speedValStr="v1000" THEN
-            RETURN v1000;
-        ENDIF
-    ENDFUNC
-
-    FUNC zonedata getZone(string zoneValStr)
-        IF zoneValStr="fine" THEN
-            RETURN fine;
-        ELSEIF zoneValStr="z0" THEN
-            RETURN z0;
-        ELSEIF zoneValStr="z1" THEN
-            RETURN z1;
-        ELSEIF zoneValStr="z5" THEN
-            RETURN z5;
-        ELSEIF zoneValStr="z10" THEN
-            RETURN z10;
-        ELSEIF zoneValStr="z15" THEN
-            RETURN z15;
-        ELSEIF zoneValStr="z20" THEN
-            RETURN z20;
-        ELSEIF zoneValStr="z30" THEN
-            RETURN z30;
-        ELSEIF zoneValStr="z40" THEN
-            RETURN z40;
-        ELSEIF zoneValStr="z50" THEN
-            RETURN z50;
-        ELSEIF zoneValStr="z60" THEN
-            RETURN z60;
-        ELSEIF zoneValStr="z80" THEN
-            RETURN z80;
-        ELSEIF zoneValStr="z100" THEN
-            RETURN z100;
-        ELSEIF zoneValStr="z150" THEN
-            RETURN z150;
-        ELSEIF zoneValStr="z200" THEN
-            RETURN z200;
-        ENDIF
-    ENDFUNC
 
     ! Main method:
     PROC main()
@@ -181,9 +121,9 @@ MODULE PointTraversal
         ! Calculating viability of rotation:
         IF(ptpIndex > 1) THEN
             curRobTarget:=create_robtarget(tgPos{ptpIndex-1}, tgRot{ptpIndex-1});
-            isRotationViable:=checkPointViability(curRobTarget);
+            isTCPChangeViable:=checkPointViability(curRobTarget);
         ELSE
-            isRotationViable:=FALSE;
+            isTCPChangeViable:=FALSE;
         ENDIF
         
         
@@ -202,9 +142,9 @@ MODULE PointTraversal
             goBackward:=FALSE;
             
         ! Changing TCP Orientation
-        ELSEIF changeTCPOrient AND isRotationViable THEN
+        ELSEIF changeTCP AND isTCPChangeViable THEN
             MoveJ curRobTarget,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
-            changeTCPOrient:=FALSE;
+            changeTCP:=FALSE;
             
             ! Completing rest of path forwards
         ELSEIF completeTraversal THEN

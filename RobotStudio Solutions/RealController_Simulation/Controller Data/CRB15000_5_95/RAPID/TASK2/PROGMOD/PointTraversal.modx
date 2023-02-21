@@ -1,50 +1,50 @@
 MODULE PointTraversal
-    PERS tooldata gripper := [TRUE, [[0,0,250],[1,0,0,0]],[1.25,[0,0,90],[1,0,0,0],0,0,0]];    
+    PERS tooldata gripper := [TRUE, [[0,0,250],[1,0,0,0]],[1.25,[0,0,90],[1,0,0,0],0,0,0]]; ! Gripper data
+   
+    VAR speeddata speedVals{10}:=[v50, v100, v150, v200, v300, v400, v500, v600, v800, v1000]; ! Array of speed values
+    VAR zonedata zoneVals{15}:=[fine, z0, z1, z5, z10, z15, z20, z30, z40, z50, z60, z80, z100, z150, z200]; ! Array of zone values
 
-    CONST robtarget Target_10:=[[780.445401809,0,695.429338613],[0.190808996,0,0.981627183,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-    CONST robtarget Target_20:=[[780.445394977,-112.547089741,695.429341283],[0.190808995,-0.000000024,0.981627184,0],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-
+    VAR num speedVal; ! Speed parameter index
+    VAR num zoneVal; ! Zone parameter index
+    
     PERS pos tgPos{100};    ! Position array containing all Cartesian positions inputted by the user
     PERS orient tgRot{100};    ! Array containing all Cartesian orientations inputted by the user
     VAR num targetsNum;    ! Total number of targets within the position array
     
     VAR num ptpIndex:=1; ! Represents the index of the NEXT point to traverse to
-    VAR robtarget initialPosPTP;
-    VAR bool isFirst:=TRUE;
-    VAR bool isCleared:=TRUE;
+    VAR robtarget initialPosPTP; ! Represents the initial position of the path
+    VAR bool isFirst:=TRUE; ! Boolean to indicate whether or not the RAPID program had just started
+    VAR bool isCleared:=TRUE; ! Boolean to reset the home position and PTP index when data is requested to be cleared
     
-    VAR robtarget nextRobTarget;
-    VAR bool isTargetViableF:=FALSE;
-    VAR bool goForward:=FALSE;
+    VAR robtarget nextRobTarget; ! Represents the next robtarget in the path
+    VAR bool isTargetViableF:=FALSE; ! Represents whether or not the next robtarget in the path is viable
+    VAR bool goForward:=FALSE; ! Boolean to command the robot to traverse forwards
 
-    VAR robtarget lastRobTarget;    
-    VAR bool isTargetViableB:=FALSE;
-    VAR bool goBackward:=FALSE;
+    VAR robtarget lastRobTarget; ! Represents the previous robtarget in the path   
+    VAR bool isTargetViableB:=FALSE; ! Represents whether or not the previous robtarget in the path is viable
+    VAR bool goBackward:=FALSE; ! Boolean to command the robot to traverse backwards
 
-    VAR bool completeTraversal:=FALSE;
-    VAR bool isNextPointViable_CPT:=FALSE;
-    VAR bool whileLoopCPT := TRUE;
+    VAR bool completeTraversal:=FALSE; ! Boolean enabling complete forwards path traversal
+    VAR bool isNextPointViable_CPT:=FALSE; ! Boolean indicating whether or not the next point in the path is viable when completely traversing the path
+    VAR bool whileLoopCPT := TRUE; ! Boolean enabling the while loop commanding the complete path traversal
 
-    VAR bool completeTraversalBack:=FALSE;
-    VAR bool isNextPointViable_CPTB:=FALSE;
-    VAR robtarget nextRobTarg_CPTB;
-    VAR bool whileLoopCPTB := TRUE;
+    VAR bool completeTraversalBack:=FALSE; ! Boolean enabling complete backwards path traversal
+    VAR bool isNextPointViable_CPTB:=FALSE; ! Boolean indicating whether or not the next point in the path is viable when completely traversing the path backwards
+    VAR robtarget nextRobTarg_CPTB; ! Contains the next robtarget when completely traversing the path backwards
+    VAR bool whileLoopCPTB := TRUE; ! Boolean enabling the while loop commanding the backwards complete path traversal
     
-    VAR bool changeTCPOrient:=FALSE;
-    VAR robtarget curRobTarget;
-    VAR bool isRotationViable:=FALSE;
+    VAR bool changeTCP:=FALSE; ! Boolean to command the change the TCP's position and/or orientation
+    VAR robtarget curRobTarget; ! Contains robtarget corresponding to current TCP position and orientation
+    VAR bool isTCPChangeViable:=FALSE; ! Boolean indicating viability of changing TCP's position and/or orientation
     
-    VAR bool isHomePosReset:=FALSE;
+    VAR bool isHomePosReset:=FALSE; ! Boolean commanding the reset of the robot's home position of the path
     
-    VAR string speedStr;    ! Speed parameter
-    VAR string zoneStr;    ! Zone parameter
     VAR string moveCommand;    ! Move behavior (MoveJ vs MoveL vs etc.)
     VAR jointtarget curJointPos;    ! Contains the corresponding joint angles for each given robtarget
     VAR errnum errJoint;    ! Contains the error message (if any) produced by CalcJointT()
 
     FUNC robtarget create_robtarget(pos position, orient rotation)
         RETURN [position,rotation,[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-        !RETURN [position,[0.190808996,0,0.981627183,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
     ENDFUNC
 
     FUNC bool checkPointViability(robtarget cur_robtarget)
@@ -70,67 +70,6 @@ MODULE PointTraversal
 
 
         RETURN isTargetViable;
-    ENDFUNC
-
-
-    ! EDIT THIS TO SIMPLY RECEIVE INDEX FROM PC SDK APPLICATION AND INDEX PARAMETERS FROM PARAMETER ARRAYS:
-    ! Ex: speedVal := speedVals{ind}
-    FUNC speeddata getSpeed(string speedValStr)
-        IF speedValStr="v50" THEN
-            RETURN v50;
-        ELSEIF speedValStr="v100" THEN
-            RETURN v100;
-        ELSEIF speedValStr="v150" THEN
-            RETURN v150;
-        ELSEIF speedValStr="v200" THEN
-            RETURN v200;
-        ELSEIF speedValStr="v300" THEN
-            RETURN v300;
-        ELSEIF speedValStr="v400" THEN
-            RETURN v400;
-        ELSEIF speedValStr="v500" THEN
-            RETURN v500;
-        ELSEIF speedValStr="v600" THEN
-            RETURN v600;
-        ELSEIF speedValStr="v800" THEN
-            RETURN v800;
-        ELSEIF speedValStr="v1000" THEN
-            RETURN v1000;
-        ENDIF
-    ENDFUNC
-
-    FUNC zonedata getZone(string zoneValStr)
-        IF zoneValStr="fine" THEN
-            RETURN fine;
-        ELSEIF zoneValStr="z0" THEN
-            RETURN z0;
-        ELSEIF zoneValStr="z1" THEN
-            RETURN z1;
-        ELSEIF zoneValStr="z5" THEN
-            RETURN z5;
-        ELSEIF zoneValStr="z10" THEN
-            RETURN z10;
-        ELSEIF zoneValStr="z15" THEN
-            RETURN z15;
-        ELSEIF zoneValStr="z20" THEN
-            RETURN z20;
-        ELSEIF zoneValStr="z30" THEN
-            RETURN z30;
-        ELSEIF zoneValStr="z40" THEN
-            RETURN z40;
-        ELSEIF zoneValStr="z50" THEN
-            RETURN z50;
-        ELSEIF zoneValStr="z60" THEN
-            RETURN z60;
-        ELSEIF zoneValStr="z80" THEN
-            RETURN z80;
-        ELSEIF zoneValStr="z100" THEN
-            RETURN z100;
-        ELSEIF zoneValStr="z150" THEN
-            RETURN z150;
-        ELSEIF zoneValStr="z200" THEN
-            RETURN z200;
-        ENDIF
     ENDFUNC
 
     ! Main method:
@@ -174,32 +113,32 @@ MODULE PointTraversal
             isTargetViableF:=FALSE;
         ENDIF
 
-        ! Calculating viability of rotation:
+        ! Calculating viability of TCP change:
         IF(ptpIndex > 1) THEN
             curRobTarget:=create_robtarget(tgPos{ptpIndex-1}, tgRot{ptpIndex-1});
-            isRotationViable:=checkPointViability(curRobTarget);
+            isTCPChangeViable:=checkPointViability(curRobTarget);
         ELSE
-            isRotationViable:=FALSE;
+            isTCPChangeViable:=FALSE;
         ENDIF
         
         !!! Moving from point to point:
 
         ! Going forwards:
         IF goForward AND isTargetViableF THEN
-            MoveJ nextRobTarget,getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+            MoveJ nextRobTarget,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
             ptpIndex:=ptpIndex+1;
             goForward:=FALSE;
 
             ! Going backwards
         ELSEIF goBackward AND isTargetViableB THEN
-            MoveJ lastRobTarget,getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+            MoveJ lastRobTarget,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
             ptpIndex:=ptpIndex-1;
             goBackward:=FALSE;
             
             ! Changing TCP Orientation
-        ELSEIF changeTCPOrient AND isRotationViable THEN
-            MoveJ curRobTarget,getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
-            changeTCPOrient:=FALSE;
+        ELSEIF changeTCP AND isTCPChangeViable THEN
+            MoveJ curRobTarget,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
+            changeTCP:=FALSE;
             
             ! Completing rest of path forwards
         ELSEIF completeTraversal THEN
@@ -209,7 +148,7 @@ MODULE PointTraversal
                 isNextPointViable_CPT := checkPointViability(create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex}));
                 
                 IF isNextPointViable_CPT THEN
-                    MoveJ create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex}),getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+                    MoveJ create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex}),speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
                     
                     IF ptpIndex < targetsNum THEN
                         ptpIndex := ptpIndex + 1; ! Incrementing the ptpIndex
@@ -243,7 +182,7 @@ MODULE PointTraversal
                 isNextPointViable_CPTB := checkPointViability(nextRobTarg_CPTB);
                 
                 IF isNextPointViable_CPTB THEN
-                    MoveJ nextRobTarg_CPTB,getSpeed(speedStr),getZone(zoneStr),gripper\WObj:=wobj0;
+                    MoveJ nextRobTarg_CPTB,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
                     
                     IF ptpIndex > 2 THEN
                         ptpIndex := ptpIndex - 1; ! Incrementing the ptpIndex
@@ -264,16 +203,6 @@ MODULE PointTraversal
             completeTraversalBack := FALSE;
 
         ENDIF
-
-
-
-
-
-
-
-
-
-
 
     ENDPROC
 

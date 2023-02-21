@@ -169,6 +169,177 @@
 <13>Feb  9 16:44:48 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00669|-|robot|	669
 <13>Feb  9 16:44:48 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00670|-|robot|	670
 <13>Feb  9 16:44:48 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00671|-|robot|	671
+<13>Feb 21 11:31:11 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00672|-|robot|NativeUser	672
+<13>Feb 21 11:31:12 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00673|-|robot|NativeUser	673
+<13>Feb 21 11:31:12 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00674|-|robot|NativeUser	674
+<13>Feb 21 11:31:12 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00675|-|robot|NativeUser	675
+<13>Feb 21 11:31:12 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00676|-|robot|NativeUser	676
+<13>Feb 21 11:31:12 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00677|-|robot|NativeUser	677
+<13>Feb 21 11:31:15 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00678|-|robot|Admin	678
+<13>Feb 21 11:31:23 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00679|-|robot|Admin	679
+<13>Feb 21 11:42:11 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00680|-|robot|	680
+<13>Feb 21 11:42:11 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00681|-|robot|	681
+<13>Feb 21 11:42:11 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00682|-|robot|	682
+<13>Feb 21 11:42:24 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00683|-|robot|NativeUser	683
+<13>Feb 21 11:42:25 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00684|-|robot|NativeUser	684
+<13>Feb 21 11:42:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00685|-|robot|NativeUser	685
+<13>Feb 21 11:42:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00686|-|robot|NativeUser	686
+<13>Feb 21 11:42:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00687|-|robot|NativeUser	687
+<13>Feb 21 11:42:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00688|-|robot|NativeUser	688
+<13>Feb 21 11:42:29 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00689|-|robot|Admin	689
+<13>Feb 21 11:42:37 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00690|-|robot|Admin	690
+<13>Feb 21 11:44:30 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=589833|1110|00691|-|robot|Default User	691
+<13>Feb 21 11:44:30 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=655370|1110|00692|-|robot|Default User	692
+<13>Feb 21 11:44:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=589833|1210|00693|-|robot|	693
+<13>Feb 21 11:44:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=655370|1210|00694|-|robot|	694
+<13>Feb 21 11:44:30 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=720905|1110|00695|-|robot|Default User	695
+<13>Feb 21 11:44:30 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=786442|1110|00696|-|robot|Default User	696
+<13>Feb 21 11:44:59 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=720905|1210|00697|-|robot|	697
+<13>Feb 21 11:44:59 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=786442|1210|00698|-|robot|	698
+<13>Feb 21 11:45:02 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=851977|1110|00699|-|robot|Default User	699
+<13>Feb 21 11:45:02 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=917514|1110|00700|-|robot|Default User	700
+<13>Feb 21 11:45:02 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=851977|1210|00701|-|robot|	701
+<13>Feb 21 11:45:02 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=917514|1210|00702|-|robot|	702
+<13>Feb 21 11:45:02 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=983049|1110|00703|-|robot|Default User	703
+<13>Feb 21 11:45:02 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=1048586|1110|00704|-|robot|Default User	704
+<13>Feb 21 11:50:37 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=1048586|1210|00705|-|robot|	705
+<13>Feb 21 11:54:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=983049|1210|00706|-|robot|	706
+<13>Feb 21 11:54:30 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=1114121|1110|00707|-|robot|Default User	707
+<13>Feb 21 11:54:47 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=1179658|1110|00708|-|robot|Default User	708
+<13>Feb 21 11:54:47 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=1245195|1110|00709|-|robot|Default User	709
+<13>Feb 21 11:54:47 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=1179658|1210|00710|-|robot|	710
+<13>Feb 21 11:54:47 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=1245195|1210|00711|-|robot|	711
+<13>Feb 21 11:54:47 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=1310730|1110|00712|-|robot|Default User	712
+<13>Feb 21 11:54:47 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=1376267|1110|00713|-|robot|Default User	713
+<13>Feb 21 11:59:37 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=1310730|1210|00714|-|robot|	714
+<13>Feb 21 11:59:37 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=1376267|1210|00715|-|robot|	715
+<13>Feb 21 12:01:00 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00716|-|robot|	716
+<13>Feb 21 12:01:00 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00717|-|robot|	717
+<13>Feb 21 12:06:04 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00718|-|robot|NativeUser	718
+<13>Feb 21 12:06:05 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00719|-|robot|NativeUser	719
+<13>Feb 21 12:06:06 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00720|-|robot|NativeUser	720
+<13>Feb 21 12:06:07 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00721|-|robot|NativeUser	721
+<13>Feb 21 12:06:07 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00722|-|robot|NativeUser	722
+<13>Feb 21 12:06:07 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00723|-|robot|NativeUser	723
+<13>Feb 21 12:06:14 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00724|-|robot|Default User	724
+<13>Feb 21 12:06:17 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00725|-|robot|Default User	725
+<13>Feb 21 12:06:17 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00726|-|robot|458759	726
+<13>Feb 21 12:06:18 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00727|-|robot|458759	727
+<13>Feb 21 12:06:19 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00728|-|robot|458759	728
+<13>Feb 21 12:06:19 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00729|-|robot|	729
+<13>Feb 21 12:06:19 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00730|-|robot|	730
+<13>Feb 21 12:06:19 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00731|-|robot|	731
+<13>Feb 21 12:06:24 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00732|-|robot|NativeUser	732
+<13>Feb 21 12:06:25 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00733|-|robot|NativeUser	733
+<13>Feb 21 12:06:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00734|-|robot|NativeUser	734
+<13>Feb 21 12:06:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00735|-|robot|NativeUser	735
+<13>Feb 21 12:06:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00736|-|robot|NativeUser	736
+<13>Feb 21 12:06:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00737|-|robot|NativeUser	737
+<13>Feb 21 12:06:28 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00738|-|robot|Admin	738
+<13>Feb 21 12:06:36 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00739|-|robot|Admin	739
+<13>Feb 21 12:06:59 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00740|-|robot|	740
+<13>Feb 21 12:06:59 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00741|-|robot|	741
+<13>Feb 21 12:06:59 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00742|-|robot|	742
+<13>Feb 21 12:07:15 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00743|-|robot|NativeUser	743
+<13>Feb 21 12:07:16 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00744|-|robot|NativeUser	744
+<13>Feb 21 12:07:17 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00745|-|robot|NativeUser	745
+<13>Feb 21 12:07:18 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00746|-|robot|NativeUser	746
+<13>Feb 21 12:07:18 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00747|-|robot|NativeUser	747
+<13>Feb 21 12:07:18 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00748|-|robot|NativeUser	748
+<13>Feb 21 12:07:25 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00749|-|robot|Default User	749
+<13>Feb 21 12:07:28 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00750|-|robot|Default User	750
+<13>Feb 21 12:07:28 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00751|-|robot|458759	751
+<13>Feb 21 12:07:29 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00752|-|robot|458759	752
+<13>Feb 21 12:07:30 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00753|-|robot|458759	753
+<13>Feb 21 12:07:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00754|-|robot|	754
+<13>Feb 21 12:07:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00755|-|robot|	755
+<13>Feb 21 12:07:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00756|-|robot|	756
+<13>Feb 21 12:07:35 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00757|-|robot|NativeUser	757
+<13>Feb 21 12:07:36 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00758|-|robot|NativeUser	758
+<13>Feb 21 12:07:37 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00759|-|robot|NativeUser	759
+<13>Feb 21 12:07:37 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00760|-|robot|NativeUser	760
+<13>Feb 21 12:07:37 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00761|-|robot|NativeUser	761
+<13>Feb 21 12:07:37 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00762|-|robot|NativeUser	762
+<13>Feb 21 12:07:40 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00763|-|robot|Admin	763
+<13>Feb 21 12:07:48 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00764|-|robot|Admin	764
+<13>Feb 21 12:08:05 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00765|-|robot|	765
+<13>Feb 21 12:08:05 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00766|-|robot|	766
+<13>Feb 21 12:08:05 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00767|-|robot|	767
+<13>Feb 21 12:09:13 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00768|-|robot|NativeUser	768
+<13>Feb 21 12:09:14 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00769|-|robot|NativeUser	769
+<13>Feb 21 12:09:15 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00770|-|robot|NativeUser	770
+<13>Feb 21 12:09:16 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00771|-|robot|NativeUser	771
+<13>Feb 21 12:09:16 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00772|-|robot|NativeUser	772
+<13>Feb 21 12:09:16 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00773|-|robot|NativeUser	773
+<13>Feb 21 12:09:23 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00774|-|robot|Default User	774
+<13>Feb 21 12:09:26 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00775|-|robot|Default User	775
+<13>Feb 21 12:09:26 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00776|-|robot|458759	776
+<13>Feb 21 12:09:27 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00777|-|robot|458759	777
+<13>Feb 21 12:09:28 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00778|-|robot|458759	778
+<13>Feb 21 12:09:28 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00779|-|robot|	779
+<13>Feb 21 12:09:28 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00780|-|robot|	780
+<13>Feb 21 12:09:28 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00781|-|robot|	781
+<13>Feb 21 12:09:33 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00782|-|robot|NativeUser	782
+<13>Feb 21 12:09:34 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00783|-|robot|NativeUser	783
+<13>Feb 21 12:09:35 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00784|-|robot|NativeUser	784
+<13>Feb 21 12:09:35 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00785|-|robot|NativeUser	785
+<13>Feb 21 12:09:35 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00786|-|robot|NativeUser	786
+<13>Feb 21 12:09:35 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00787|-|robot|NativeUser	787
+<13>Feb 21 12:09:38 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00788|-|robot|Admin	788
+<13>Feb 21 12:09:46 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00789|-|robot|Admin	789
+<13>Feb 21 12:12:07 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00790|-|robot|	790
+<13>Feb 21 12:12:07 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00791|-|robot|	791
+<13>Feb 21 12:12:07 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00792|-|robot|	792
+<13>Feb 21 12:12:24 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00793|-|robot|NativeUser	793
+<13>Feb 21 12:12:25 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00794|-|robot|NativeUser	794
+<13>Feb 21 12:12:25 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00795|-|robot|NativeUser	795
+<13>Feb 21 12:12:27 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00796|-|robot|NativeUser	796
+<13>Feb 21 12:12:27 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00797|-|robot|NativeUser	797
+<13>Feb 21 12:12:27 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00798|-|robot|NativeUser	798
+<13>Feb 21 12:12:33 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00799|-|robot|Default User	799
+<13>Feb 21 12:12:36 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00800|-|robot|Default User	800
+<13>Feb 21 12:12:37 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00801|-|robot|458759	801
+<13>Feb 21 12:12:38 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00802|-|robot|458759	802
+<13>Feb 21 12:12:39 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00803|-|robot|458759	803
+<13>Feb 21 12:12:39 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00804|-|robot|	804
+<13>Feb 21 12:12:39 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00805|-|robot|	805
+<13>Feb 21 12:12:39 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00806|-|robot|	806
+<13>Feb 21 12:12:44 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00807|-|robot|NativeUser	807
+<13>Feb 21 12:12:45 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00808|-|robot|NativeUser	808
+<13>Feb 21 12:12:45 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00809|-|robot|NativeUser	809
+<13>Feb 21 12:12:45 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00810|-|robot|NativeUser	810
+<13>Feb 21 12:12:45 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00811|-|robot|NativeUser	811
+<13>Feb 21 12:12:45 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00812|-|robot|NativeUser	812
+<13>Feb 21 12:12:48 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00813|-|robot|Admin	813
+<13>Feb 21 12:12:56 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00814|-|robot|Admin	814
+<13>Feb 21 12:13:10 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00815|-|robot|	815
+<13>Feb 21 12:13:10 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00816|-|robot|	816
+<13>Feb 21 12:13:10 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00817|-|robot|	817
+<13>Feb 21 12:15:15 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00818|-|robot|NativeUser	818
+<13>Feb 21 12:15:15 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00819|-|robot|NativeUser	819
+<13>Feb 21 12:15:16 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00820|-|robot|NativeUser	820
+<13>Feb 21 12:15:18 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00821|-|robot|NativeUser	821
+<13>Feb 21 12:15:18 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00822|-|robot|NativeUser	822
+<13>Feb 21 12:15:18 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00823|-|robot|NativeUser	823
+<13>Feb 21 12:15:24 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00824|-|robot|Default User	824
+<13>Feb 21 12:15:27 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00825|-|robot|Default User	825
+<13>Feb 21 12:15:28 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00826|-|robot|458759	826
+<13>Feb 21 12:15:29 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00827|-|robot|458759	827
+<13>Feb 21 12:15:30 CRB15000_5_95 ABB-UAL:01:Configuration upload|-|Start restore|1331|00828|-|robot|458759	828
+<13>Feb 21 12:15:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00829|-|robot|	829
+<13>Feb 21 12:15:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00830|-|robot|	830
+<13>Feb 21 12:15:30 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00831|-|robot|	831
+<13>Feb 21 12:15:35 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=65537|1110|00832|-|robot|NativeUser	832
+<13>Feb 21 12:15:35 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=131074|1110|00833|-|robot|NativeUser	833
+<13>Feb 21 12:15:36 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=196611|1110|00834|-|robot|NativeUser	834
+<13>Feb 21 12:15:36 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=262148|1110|00835|-|robot|NativeUser	835
+<13>Feb 21 12:15:36 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=327685|1110|00836|-|robot|NativeUser	836
+<13>Feb 21 12:15:36 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=393222|1110|00837|-|robot|NativeUser	837
+<13>Feb 21 12:15:39 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=458759|1110|00838|-|robot|Admin	838
+<13>Feb 21 12:15:47 CRB15000_5_95 ABB-UAL:01:Log-in successful|-|UAS_UID=524296|1110|00839|-|robot|Admin	839
+<13>Feb 21 12:15:57 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=524296|1210|00840|-|robot|	840
+<13>Feb 21 12:15:57 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|UAS_UID=458759|1210|00841|-|robot|	841
+<13>Feb 21 12:15:57 CRB15000_5_95 ABB-UAL:01:Log-out (user logged out)|-|Socket=7148|1210|00842|-|robot|	842
 -----BEGIN DIGEST-----
-ImLyqjknITNfCBL32kgSswqUga7DaAaSFLUSNBYVVzqAbXfaXoPupr/Mbp2m1XtsYnjmLA==
+D00pmBn2oLxhwqTEr3JmZywKk6EyBv82tk0ZKkQ7NmryD2fhrKDREZenPvB3q8ytXLTdww==
 -----END DIGEST-----
