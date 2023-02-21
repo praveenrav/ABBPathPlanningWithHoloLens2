@@ -21,24 +21,22 @@ public class TCPClient : MonoBehaviour
     #endregion
 
     // TCP Socket Information:
-    private string localIPAddr = "127.0.0.1";
-    private string remoteIPAddr = "172.20.10.9";
-    private string IPAddrUsed = "";
-    private int portUsed = 13;
+    private string IPAddrUsed = "10.0.16.21"; // Placeholder string representing inputted IP address - set to the remote IP address of the computer by default
+    private int portUsed = 13; // Port number of TCP socket used
     public bool keyboardBool = true;
 
-    public TouchScreenKeyboard keyboard;
-    public string keyboardText = "";
+    public TouchScreenKeyboard keyboard; // Game object representing the keyboard in AR
+    public string keyboardText = ""; // Placeholder string representing the text typed into the keyboard
 
     // TCP Message Booleans:
-    public bool connectedToServer = false;
-    public bool processStarted = false;
+    public bool connectedToServer = false; // Boolean indicating server connection status
+    public bool processStarted = false; // Boolean indicating process initiation status
 
     // Message parameters:
-    public Queue tcpDataQueue = new Queue();
-    public Queue tcpErrorQueue = new Queue();
-    public string currentCommand = "";
-    public string currentErr = "";
+    public Queue tcpDataQueue = new Queue(); // Queue representing general messages sent from the server
+    public Queue tcpErrorQueue = new Queue(); // Queue representing error messages sent from the server
+    public string currentCommand = ""; // Placeholder string representing the current command sent by the server
+    public string currentErr = ""; // Placeholder string representing the current error message sent from the server
 
     // Data Information:
     [SerializeField]
@@ -64,6 +62,7 @@ public class TCPClient : MonoBehaviour
     // Start() runs when program is first executed:
     void Start()
     {
+        // Initializes UI:
         connectLabel.text = "Ready to connect!";
         connectLabel.color = Color.blue;
     }
@@ -76,7 +75,7 @@ public class TCPClient : MonoBehaviour
         if(keyboard != null)
         {
             keyboardText = keyboard.text;
-            IPAddrLabel.text = keyboardText.ToString();
+            IPAddrLabel.text = keyboardText.ToString(); // Stores the inputted IP address
             
         }
 
@@ -86,10 +85,11 @@ public class TCPClient : MonoBehaviour
             lock (tcpDataQueue)
             {
                 currentCommand = tcpDataQueue.Dequeue().ToString();
-                processServerMessage(currentCommand);
+                processServerMessage(currentCommand); // Processes current command sent from the server
             }
         }
 
+        // Error messages sent from the server:
         if(tcpErrorQueue.Count > 0)
         {
             lock(tcpErrorQueue)
@@ -110,60 +110,50 @@ public class TCPClient : MonoBehaviour
         else
         {
             IPAddrUsed = keyboardText.ToString(); // Stores the keyboard text as the desired IP address to connect to
-            IPAddrUsed = IPAddrUsed.Replace("\n", "").Replace("\r", "");
-            connectLabel.text = "IP Address set!";
+            IPAddrUsed = IPAddrUsed.Replace("\n", "").Replace("\r", ""); // Removes all new line and carriage returns present in the inputted string
+            connectLabel.text = "IP Address set!"; // Updates UI
             keyboard = null; // Resets keyboard object
         }
 
         keyboardBool = !keyboardBool;
     }
 
-    
+    public void ConnectToTCPServer(string IPAddress)
+    {
+        // Generic method to connect to the TCP server using the given IP Address
+
+        errMessLabel.text = "Error Message:"; // Resets the error message UI
+
+        try
+        {
+            connectLabel.text = "Connecting...";
+            //clientReceiveThread = new Thread(new ThreadStart(ListenForData(ipAddr, portNum));
+            clientReceiveThread = new Thread(() => ListenForData(IPAddress, portUsed)); // Creates a new thread to listen to TCP server messages
+            clientReceiveThread.IsBackground = true;
+            clientReceiveThread.Start(); // Starts the thread
+        }
+        catch (Exception e)
+        {
+            // Updates UI with the received error:
+            connectLabel.text = "Not connected!";
+            connectLabel.color = Color.red;
+            errMessLabel.text = "Error Messsage: On client connection exception: " + e;
+        }
+    }
+
     public void ConnectToRemoteTcpServer()
     {
-        //if (IPAddrUsed == "")
-        if(false)
-        {
-            errMessLabel.text = "Error Message: Please enter an IP Address!";
-        }
-        else
-        {
-            errMessLabel.text = "Error Message:";
+        // Method to connect to the remote TCP server
 
-            try
-            {
-                connectLabel.text = "Connecting...";
-                //clientReceiveThread = new Thread(new ThreadStart(ListenForData(ipAddr, portNum));
-                clientReceiveThread = new Thread(() => ListenForData(remoteIPAddr, portUsed));
-                clientReceiveThread.IsBackground = true;
-                clientReceiveThread.Start();
-            }
-            catch (Exception e)
-            {
-                connectLabel.text = "Not connected!";
-                connectLabel.color = Color.red;
-                errMessLabel.text = "Error Messsage: On client connection exception: " + e;
-            }
-        }
+        ConnectToTCPServer(IPAddrUsed);
     }
     
 
     public void ConnectToLocalTcpServer()
     {
-        try
-        {
-            connectLabel.text = "Connecting...";
-            //clientReceiveThread = new Thread(new ThreadStart(ListenForData()));
-            clientReceiveThread = new Thread(() => ListenForData(localIPAddr, portUsed));
-            clientReceiveThread.IsBackground = true;
-            clientReceiveThread.Start();
-        }
-        catch (Exception e)
-        {
-            connectLabel.text = "Not connected!";
-            connectLabel.color = Color.red;
-            errMessLabel.text = "Error Message: On client connection exception: " + e;
-        }
+        // Method to connect to the TCP server on local host (127.0.0.1)
+
+        ConnectToTCPServer("127.0.0.1");
     }
 
 
@@ -171,7 +161,6 @@ public class TCPClient : MonoBehaviour
     {
         try
         {
-            //socketConnection = new TcpClient("localhost", 13); // Setting up new TCP Client
             socketConnection = new TcpClient(ipAddr, portNum);
 
             Byte[] bytes = new Byte[32768];
@@ -212,6 +201,8 @@ public class TCPClient : MonoBehaviour
 
     public void SendMessageToServer(string clientMessage)
     {
+        // Method to send message to TCP server
+
         if (socketConnection == null)
         {
             return;
@@ -244,6 +235,7 @@ public class TCPClient : MonoBehaviour
         {
             if (serverMessage == "Connected.")
             {
+                // Updates UI:
                 connectLabel.text = serverMessage;
                 connectLabel.color = Color.green;
                 connectedToServer = true;
@@ -252,9 +244,11 @@ public class TCPClient : MonoBehaviour
         }
         else if (serverMessage == "DISCONNECTING")
         {
+            // Updates booleans:
             connectedToServer = false;
             processStarted = false;
 
+            // Updates UI:
             endProcessButton.SetActive(false);
 
             connectLabel.text = "Disconnected.";
@@ -264,64 +258,75 @@ public class TCPClient : MonoBehaviour
         }
         else if(serverMessage.Substring(0, 3) == "ERR")
         {
+            // Updates UI:
             errMessLabel.text = "Error Message: " + serverMessage.Substring(4);
         }
         else if(!processStarted)
         {
             if(serverMessage == "PROCESS_STARTED")
             {
+                // Updates UI:
                 processStatusLabel.text = "Process Status: Connected to controller";
                 endProcessButton.SetActive(true);
 
+                // Updates boolean:
                 processStarted = true;
             }
         }
         else if (serverMessage == "PROCESS_ENDED")
         {
+            // Updates UI:
             endProcessButton.SetActive(false);
             processStarted = false;
 
             processStatusLabel.text = "Process Status: Disconnected from controller";
 
         }
-        else if (serverMessage == "GOING_FORWARD")
+        else if (serverMessage == "GOING_FORWARD") // If forwards movement occurs
         {
-            dataPointHolder.ptpIndex++;
+            dataPointHolder.ptpIndex++; // Increments PTP index
 
+            // Updates UI:
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Going forward!";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: F-T";
         }
-        else if (serverMessage == "GOING_BACKWARD")
+        else if (serverMessage == "GOING_BACKWARD") // If backwards movement occurs
         {
-            dataPointHolder.ptpIndex--;
+            dataPointHolder.ptpIndex--; // Decrements PTP index
 
+            // Updates UI:
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Going backward!";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: B-T";
         }
-        else if (serverMessage == "CHANGING_TCP")
+        else if (serverMessage == "CHANGING_TCP") // If TCP is changing
         {
+            // Updates UI:
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Updating TCP!";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: U-T";
         }
-        else if (serverMessage == "FORWARD_NOT_POSSIBLE")
+        else if (serverMessage == "FORWARD_NOT_POSSIBLE") // If requested forward movement is not possible
         {
+            // Updates UI:
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Forward movement not possible.";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: F-F";
         }
-        else if (serverMessage == "BACKWARD_NOT_POSSIBLE")
+        else if (serverMessage == "BACKWARD_NOT_POSSIBLE") // If requested backward movement is not possible
         {
+            // Updates UI:
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Backward movement not possible.";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: B-F";
         }
-        else if (serverMessage == "TCPCHANGE_NOT_POSSIBLE")
+        else if (serverMessage == "TCPCHANGE_NOT_POSSIBLE") // If requested TCP change is not possible
         {
+            // Updates UI:
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Updating TCP not possible!";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: U-F";
         }
-        else if(serverMessage.Substring(0, 3) == "PTP")
+        else if(serverMessage.Substring(0, 3) == "PTP") // Receives updated PTP index
         {
-            dataPointHolder.ptpIndex = int.Parse(serverMessage.Substring(3));
+            dataPointHolder.ptpIndex = int.Parse(serverMessage.Substring(3)); // Updates PTP index
 
+            // Updates UI:
             dataPointHolder.pathViabilityLabel.text = "Path Viability: Traversing completed!";
             dataPointHolder.pathViabilityLabelminiMenu.text = "Path Viability: T-C";
         }
@@ -354,6 +359,8 @@ public class TCPClient : MonoBehaviour
     // TCP Message-Specific Methods:
     public void StartProcess()
     {
+        // Indicates to server to start process
+
         string clientMessage = "START_PROCESS";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: " + clientMessage;
@@ -361,6 +368,8 @@ public class TCPClient : MonoBehaviour
 
     public void EndProcess()
     {
+        // Indicates to server to end process
+
         string clientMessage = "END_PROCESS";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: " + clientMessage;
@@ -368,6 +377,8 @@ public class TCPClient : MonoBehaviour
 
     public void GoForward()
     {
+        // Indicates to server to attempt to go forwards in the path
+
         string clientMessage = "GO_FORWARD";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: " + clientMessage;   
@@ -375,6 +386,8 @@ public class TCPClient : MonoBehaviour
 
     public void GoBackward()
     {
+        // Indicates to server to attempt to go backwards in the path
+
         string clientMessage = "GO_BACKWARD";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: " + clientMessage;
@@ -382,6 +395,8 @@ public class TCPClient : MonoBehaviour
 
     public void changeTCP()
     {
+        // Indicates to server to attempt to change the current position and/or orientation of the TCP
+
         string clientMessage = "CHANGE_TCP";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: " + clientMessage;
@@ -389,7 +404,9 @@ public class TCPClient : MonoBehaviour
 
     public void runCPT()
     {
-        SendDataMessage();
+        // Indicates to server to attempt to completely traverse the given path forwards
+
+        //SendDataMessage();
         string clientMessage = "RUN_CPT";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: " + clientMessage;
@@ -398,6 +415,8 @@ public class TCPClient : MonoBehaviour
 
     public void runCPTB()
     {
+        // Indicates to server to attempt to completely traverse the given path backwards
+
         //SendDataMessage();
         string clientMessage = "RUN_CPT_BACK";
         SendMessageToServer(clientMessage);
@@ -407,11 +426,15 @@ public class TCPClient : MonoBehaviour
 
     public void SendDataMessage()
     {
+        // Sends all relevant data to the server, which includes points' spatial coordinates, rotations, parameter data, total number of points, and PTP index value
+
+        // Placeholder variables:
         Vector3 curCoor;
         Quaternion curRot;
 
-        string clientMessage = "#";
+        string clientMessage = "#"; // Character to indicate transmission of data
 
+        // Including all spatial and rotational coordinate data:
         for (int i = 0; i < dataPointHolder.pointCounter; i++)
         {
             curCoor = dataPointHolder.posArr[i];
@@ -423,16 +446,15 @@ public class TCPClient : MonoBehaviour
         }
 
         clientMessage += "@";
-        clientMessage += speedSlider.sliderIndexValue;
-        //clientMessage += speedSlider.speedVal.ToString();
+        clientMessage += speedSlider.sliderIndexValue; // Including index of selected speed
         clientMessage += "%";
-        clientMessage += zoneSlider.sliderIndexValue;
-        //clientMessage += zoneSlider.zoneVal.ToString();
+        clientMessage += zoneSlider.sliderIndexValue; // Including index of selected zone
         clientMessage += "%";
-        clientMessage += dataPointHolder.pointCounter.ToString();
+        clientMessage += dataPointHolder.pointCounter.ToString(); // Including total number of points
         clientMessage += "%";
-        clientMessage += dataPointHolder.ptpIndex.ToString();
+        clientMessage += dataPointHolder.ptpIndex.ToString(); // Including PTP index
 
+        // Attempts to send data to the server and indicates to user if connection to the server is not established:
         if (processStarted)
         {
             SendMessageToServer(clientMessage);
@@ -444,10 +466,10 @@ public class TCPClient : MonoBehaviour
         }
     }
 
-
-
     public void resetHomePos()
     {
+        // Indicates to the server to reset the home position of the robot
+
         string clientMessage = "RESET_HOME";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: Reset home position!";
@@ -455,6 +477,8 @@ public class TCPClient : MonoBehaviour
 
     public void ClearAllPoints()
     {
+        // Indicates to the server to clear all data
+
         string clientMessage = "CLEAR_DATA";
         SendMessageToServer(clientMessage);
         clientMessLabel.text = "Client Message: " + clientMessage;

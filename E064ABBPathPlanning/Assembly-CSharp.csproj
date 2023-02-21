@@ -60,7 +60,6 @@
     <Compile Include="Assets\Custom Scripts\PointPicking.cs" />
     <Compile Include="Assets\Custom Scripts\PinchingSlider.cs" />
     <Compile Include="Assets\Custom Scripts\TCPClient.cs" />
-    <Compile Include="Assets\Custom Scripts\MoveBehavior.cs" />
     <Compile Include="Assets\Custom Scripts\QRCodesVisualizer.cs" />
     <Compile Include="Assets\Custom Scripts\AddSlider.cs" />
     <Compile Include="Assets\Custom Scripts\PointObjects.cs" />

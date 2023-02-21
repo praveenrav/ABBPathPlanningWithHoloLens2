@@ -88,7 +88,7 @@ namespace PCSDKApplication
                 item.SubItems.Add(controllerInfo.SystemName);
                 item.SubItems.Add(controllerInfo.Version.ToString());
                 item.SubItems.Add(controllerInfo.ControllerName);
-                this.listView1.Items.Add(item);
+                this.listView1.Items.Add(item); // Adds each found controller
                 item.Tag = controllerInfo;
 
                 // Adding each controller to the event handler:
@@ -143,7 +143,7 @@ namespace PCSDKApplication
 
         public void positionListView_DoubleClick(object sender, EventArgs e)
         {
-            // Method to allow for position point data to be edited by simply clicking on its corresponding position in the point listview 
+            /* Method to allow for position point data to be edited by simply clicking on its corresponding position in the point listview */
 
             ListViewItem item = this.positionListView.SelectedItems[0];
             if (item != null)
@@ -162,6 +162,7 @@ namespace PCSDKApplication
         }
 
         
+        // Event handling methods related to adding new controllers and removing disconnected controllers on the network:
         void HandleFoundEvent(object sender, NetworkWatcherEventArgs e)
         {
             this.Invoke(new EventHandler<NetworkWatcherEventArgs>(AddControllerToListView), new Object[] { this, e });
@@ -172,8 +173,41 @@ namespace PCSDKApplication
             this.Invoke(new EventHandler<NetworkWatcherEventArgs>(RemoveControllerFromListView), new Object[] { this, e });
         }
         
+        public void AddControllerToListView(object sender, NetworkWatcherEventArgs e)
+        {
+            // Method to add controllers to the list view as they appear on the network
+
+            ControllerInfo controllerInfo = e.Controller;
+            ListViewItem item = new ListViewItem(controllerInfo.IPAddress.ToString());
+            item.SubItems.Add(controllerInfo.Id);
+            item.SubItems.Add(controllerInfo.Availability.ToString());
+            item.SubItems.Add(controllerInfo.IsVirtual.ToString());
+            item.SubItems.Add(controllerInfo.SystemName);
+            item.SubItems.Add(controllerInfo.Version.ToString());
+            item.SubItems.Add(controllerInfo.ControllerName);
+            this.listView1.Items.Add(item); // Adds each found controller
+            item.Tag = controllerInfo;
+        }
+
+        public void RemoveControllerFromListView(object sender, NetworkWatcherEventArgs e)
+        {
+            // Method to remove controllers from the list view as they disconnect from the network
+
+            ControllerInfo controllerInfo = e.Controller;
+
+            foreach(ListViewItem item in this.listView1.Items)
+            {
+                if(controllerInfo == (ControllerInfo) item.Tag)
+                {
+                    this.listView1.Items.Remove(item); // Removes the controller
+                }
+            }
+        }
+
         public void connectToController(object sender, EventArgs e)
         {
+            /* Windows form method to connect to the selected ABB controller */
+
             int num;
 
             try
@@ -188,44 +222,20 @@ namespace PCSDKApplication
                     num = 1;
                 }
 
-                abbInterface.connectToController(num);
+                abbInterface.connectToController(num); // Connects to the selected controller
             }
             catch (Exception ex)
             {
+                // Produces error message if no controller is selected:
                 MessageBox.Show("Please select a controller first.");
             }
 
         }
 
-        public void AddControllerToListView(object sender, NetworkWatcherEventArgs e)
-        {
-            ControllerInfo controllerInfo = e.Controller;
-            ListViewItem item = new ListViewItem(controllerInfo.IPAddress.ToString());
-            item.SubItems.Add(controllerInfo.Id);
-            item.SubItems.Add(controllerInfo.Availability.ToString());
-            item.SubItems.Add(controllerInfo.IsVirtual.ToString());
-            item.SubItems.Add(controllerInfo.SystemName);
-            item.SubItems.Add(controllerInfo.Version.ToString());
-            item.SubItems.Add(controllerInfo.ControllerName);
-            this.listView1.Items.Add(item);
-            item.Tag = controllerInfo;
-        }
-
-        public void RemoveControllerFromListView(object sender, NetworkWatcherEventArgs e)
-        {
-            ControllerInfo controllerInfo = e.Controller;
-
-            foreach(ListViewItem item in this.listView1.Items)
-            {
-                if(controllerInfo == (ControllerInfo) item.Tag)
-                {
-                    this.listView1.Items.Remove(item);
-                }
-            }
-        }
-
         public void disconnectFromController(object sender, EventArgs e)
         {
+            /* Windows form method to disconnect from the selected ABB controller */
+
             int num;
 
             try
@@ -255,10 +265,11 @@ namespace PCSDKApplication
                     }
                 }
 
-                abbInterface.DisconnectFromController(num);
+                abbInterface.DisconnectFromController(num); // Disconnects from the selected controller
             }
             catch (Exception ex)
             {
+                // Produces error message if no controller is selected:
                 MessageBox.Show("Please select a controller first.");
             }
 
@@ -266,6 +277,8 @@ namespace PCSDKApplication
 
         public void StartRapidProgram(object sender, EventArgs e)
         {
+            /* Windows form method to start the RAPID program on the selected controller */
+
             int num;
 
             try
@@ -297,10 +310,11 @@ namespace PCSDKApplication
                 }
                 
 
-                abbInterface.StartRapidProgram(num);
+                abbInterface.StartRapidProgram(num); // Starts the RAPID program on the selected controller
             }
             catch (Exception ex)
             {
+                // Produces error message if no controller is selected:
                 MessageBox.Show("Please select a controller first.");
             }
 
@@ -308,6 +322,8 @@ namespace PCSDKApplication
 
         public void StopRapidProgram(object sender, EventArgs e)
         {
+            /* Windows form method to start the RAPID program on the selected controller */
+
             int num;
 
             try
@@ -337,10 +353,11 @@ namespace PCSDKApplication
                     }
                 }
 
-                abbInterface.StopRapidProgram(num);
+                abbInterface.StopRapidProgram(num); // Stops the RAPID program on the selected controller
             }
             catch (Exception ex)
             {
+                // Produces error message if no controller is selected:
                 MessageBox.Show("Please select a controller first.");
             }
 
@@ -349,6 +366,8 @@ namespace PCSDKApplication
         // Path-modifying button methods:
         public void goForwardButton_Click(object sender, EventArgs e)
         {
+            /* Windows form method to traverse forward to the next point in the path */
+
             abbInterface.SendDataParamsRAPID(0);
             abbInterface.SendDataParamsRAPID(1);
             abbInterface.goForward();
@@ -356,6 +375,8 @@ namespace PCSDKApplication
 
         public void goBackwardButton_Click(object sender, EventArgs e)
         {
+            /* Windows form method to traverse backwards to the previous point in the path */
+
             abbInterface.SendDataParamsRAPID(0);
             abbInterface.SendDataParamsRAPID(1);
             abbInterface.goBackward();
@@ -363,27 +384,37 @@ namespace PCSDKApplication
 
         public void CPTButton_Click(object sender, EventArgs e)
         {
-            abbInterface.completelyTraverseForward();
-            /*
-            isPathViable = false;
-            CheckPathViability();
+            /* Windows form method to completley traverse forward to the final point in the path */
 
-            if (isPathViable)
-            {
-                executeValidatedCPTPath();
-                isPathViable = false; // Resets path viability
-            }
-            */
+            abbInterface.SendDataParamsRAPID(0);
+            abbInterface.SendDataParamsRAPID(1);
+            abbInterface.completelyTraverseForward();
+
         }
 
         public void CPTBButton_Click(object sender, EventArgs e)
         {
+            /* Windows form method to completely traverse backwards to the first point in the path */
+
+            abbInterface.SendDataParamsRAPID(0);
+            abbInterface.SendDataParamsRAPID(1);
             abbInterface.completelyTraverseBack();
+        }
+
+        private void changeTCPbutton_Click(object sender, EventArgs e)
+        {
+            /* Windows form method to change the TCP position and orientation at the robot's current point along the path */
+
+            abbInterface.SendDataParamsRAPID(0);
+            abbInterface.SendDataParamsRAPID(1);
+            abbInterface.changeTCP();
         }
 
         public void clearDataButton_Click(object sender, EventArgs e)
         {
-            abbInterface.clearDataRAPID();
+            /* Windows form method to clear all path and coordinate data */
+
+            abbInterface.clearDataRAPID(); // Clearing data in RAPID
 
             // Resetting UI:
             positionListView.Items.Clear();
@@ -397,8 +428,19 @@ namespace PCSDKApplication
 
         public void sendDataButton_Click(object sender, EventArgs e)
         {
+            /* Windows form method to send the current data and path parameters to the controllers */
+
             abbInterface.SendDataParamsRAPID(0);
             abbInterface.SendDataParamsRAPID(1);
+        }
+
+
+
+        private void setHomePosButton_Click(object sender, EventArgs e)
+        {
+            /* Windows form method to change the home position (initial path position) of the robot*/
+
+            abbInterface.setHomePositionRAPID();
         }
     }
 

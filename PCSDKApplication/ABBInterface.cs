@@ -30,26 +30,25 @@ namespace PCSDKApplication
         public ABB.Robotics.Controllers.RapidDomain.Task[] tasks = null;
 
         ///// ABB RAPID Information:
-        public Bool completePathTraversalBool;
-        public Bool completePathTraversalBackBool;
-        public Bool goForwardBool;
-        public Bool goBackwardBool;
-        public Bool changeTCPBool;
-        public Bool isFirstBool;
-        public Bool isClearedBool;
-        public Bool isHomePosReset;
+        public Bool completePathTraversalBool; // ABB boolean used to command completely traversing the path forwards
+        public Bool completePathTraversalBackBool; // ABB boolean used to commmand completely traversing the path backwards
+        public Bool goForwardBool; // ABB boolean used to command proceeding to the next point in the path
+        public Bool goBackwardBool; // ABB boolean used to command traveling backwards to the previous point in the path
+        public Bool changeTCPBool; // ABB boolean used to comamnd the change the current TCP position and orientation
+        public Bool isFirstBool; // ABB boolean used to indicate whether or not the RAPID program had just started
+        public Bool isClearedBool; // ABB boolean used to indicate whether or not the data is desired to be cleared
+        public Bool isHomePosReset; // ABB boolean used to indicate whether or not the home position of the robot is reset
         public Num speedNum; // ABB num variable used to indicate the index of the desired speed value in the RAPID speeddata array
         public Num zoneNum; // ABB num variable used to indicate the index of the desired zone value in the RAPID zonedata array
         public Num num_targets; // ABB num variable used to indicate the number of inputted coordinates
         public Num ptpIndexABB; // ABB num variable used to indicate the index of the next point to be traversed when point-to-point mode is enabled
-        public RobTarget initRobotPos;
+        public RobTarget initRobotPos; // ABB robtarget containing the relevant information of the robot's initial position and orientation
 
-        // TCP Message Booleans:
-        public bool connectedToController1 = false;
-        public bool connectedToController2 = false;
-        public bool startedRAPIDProgram1 = false;
-        public bool startedRAPIDProgram2 = false;
-        public bool isPathViable = false;
+        // Controller Connection Information:
+        public bool connectedToController1 = false; // Boolean indicating connection status to Controller 1 
+        public bool connectedToController2 = false; // Boolean indicating connection status to Controller 2
+        public bool startedRAPIDProgram1 = false; // Boolean indicating whether or not the RAPID program for controller 1 had been started
+        public bool startedRAPIDProgram2 = false; // Boolean indicating whether or not the RAPID program for controller 2 had been started
 
         // Error message strings:
         public string contrErrMess = "";
@@ -58,7 +57,7 @@ namespace PCSDKApplication
         public int speedInt; // Integer representing index of the speed value in the speed value array
         public int zoneInt; // Integer representing index of the zone value in the zone value array
 
-        public int ptpIndex = 1; // Index representing the next point to traverse to
+        public int ptpIndex = 1; // Point-to-point (PTP) index representing the next point to traverse to
         public int total_num; // Total number of input coordinates as obtained by the Unity client
         public int total_count; // Total number of input coordinates
         
@@ -109,9 +108,19 @@ namespace PCSDKApplication
 
         public void connectToController(int num)
         {
-            // Method utilized by the HoloLens 2 to connect to an ABB controller
+            /* Method utilized by the HoloLens 2 to connect to an ABB controller */
 
-            ControllerInfo selectContr = controllers[num];
+            ControllerInfo selectContr;
+
+            try
+            {
+                selectContr = controllers[num];
+            }
+            catch
+            {
+                return;
+            }
+
             Controller controller;
 
             if (selectContr.Availability == ABB.Robotics.Controllers.Availability.Available)
@@ -120,6 +129,7 @@ namespace PCSDKApplication
                 // Attempts to connect to the controller:
                 try
                 {
+                    // If the program is in testing mode:
                     if (mainWindow.isTesting)
                     {
                         if (num == 0)
@@ -135,6 +145,7 @@ namespace PCSDKApplication
                             controller = this.controller2;
                         }
                     }
+                    // If the program is using the physical ABB GoFa robot:
                     else
                     {
                         if (!selectContr.IsVirtual)
@@ -224,7 +235,7 @@ namespace PCSDKApplication
 
         public void connectToControllers()
         {
-            // Method utilized by the HoloLens 2 to connect to both the real and virtual ABB controllers
+            /* Method utilized by the HoloLens 2 to connect to both the real and virtual ABB controllers */
 
             try
             {
@@ -311,6 +322,8 @@ namespace PCSDKApplication
 
         public void DisconnectFromController(int num)
         {
+            /* Method to disconnect from the selected controller */
+
             Controller controller;
 
             if (num == 0)
@@ -376,6 +389,8 @@ namespace PCSDKApplication
 
         public void StartRapidProgram(int num)
         {
+            /* Method to start the RAPID program on a given controller */
+
             Controller controller;
 
             if (num == 0)
@@ -468,6 +483,8 @@ namespace PCSDKApplication
 
         public void StopRapidProgram(int num)
         {
+            /* Method to stop the RAPID program on a given controller */
+
             Controller controller;
 
             if (num == 0)
@@ -485,7 +502,7 @@ namespace PCSDKApplication
                 {
                     using (Mastership m = Mastership.Request(controller.Rapid))
                     {
-                        controller.Rapid.Stop();
+                        controller.Rapid.Stop(); // Stops RAPID program on the given controller
 
                         // Updating UI:
                         if (num == 0)
@@ -536,12 +553,11 @@ namespace PCSDKApplication
         public void SendDataParamsRAPID(int num)
         {
             // This method sends the coordinate data and corresponding parameters to the selected controller
-            // If the selected controller is the digital twin, the path is attempted to be automatically run
 
             string x_coor, y_coor, z_coor; // Placeholder strings for each input coordinate
             string w_rot, x_rot, y_rot, z_rot; // Placeholder strings for each input rotation
 
-
+            // Determines if the total count should be determined from the HoloLens or from the main Windows form:
             if (mainWindow.tcpServer.isConnected)
             {
                 total_count = total_num;
@@ -552,7 +568,7 @@ namespace PCSDKApplication
             }
 
             num_targets.Value = total_count; // Total number of targets
-            ptpIndexABB.Value = ptpIndex;
+            ptpIndexABB.Value = ptpIndex; // Current value of PTP index
 
             Controller controller;
 
@@ -638,24 +654,12 @@ namespace PCSDKApplication
             }
         }
 
-        /*
-        private void HandleStartFlagChanged(object sender, DataValueChangedEventArgs e)
-        {
-            this.Invoke(new EventHandler<DataValueChangedEventArgs>(changeBoolean), new Object[] { this, e });
-            //this.Invoke(new EventHandler<DataValueChangedEventArgs>(changeBoolean), sender, e);
-        }
-
-        private void changeBoolean(object sender, DataValueChangedEventArgs e)
-        {
-            //this.TCPWindowLabel.Text = "Works";
-            testBool = true;
-            //this.Invoke(new MethodInvoker(delegate () { this.TCPWindowLabel.Text = "Works"; }));
-        }
-        */
 
         // Movement-Specific RAPID Methods:
         public void goForward()
         {
+            /* Method to traverse forward to the next point in the path */
+
             // Running the path on the real controller:
             ABB.Robotics.Controllers.RapidDomain.Task tRob1 = controller1.Rapid.GetTask("T_ROB1");
             if (tRob1 != null)
@@ -819,13 +823,14 @@ namespace PCSDKApplication
 
         public void changeTCP()
         {
+            /* Method to change the TCP position and orientation of the current point along the path */
 
             // Running the path on the real controller:
             ABB.Robotics.Controllers.RapidDomain.Task tRob1 = controller1.Rapid.GetTask("T_ROB1");
             if (tRob1 != null)
             {
                 RapidData changeTCP_RAPID = tRob1.GetRapidData("PointTraversal", "changeTCP"); // Boolean from RAPID
-                RapidData isTCPChangeViable_RAPID = tRob1.GetRapidData("PointTraversal", "isTCPChangeViable");
+                RapidData isTCPChangeViable_RAPID = tRob1.GetRapidData("PointTraversal", "isTCPChangeViable"); // Boolean from RAPID indicating viability of TCP change
 
                 if (changeTCP_RAPID.Value is Bool && isTCPChangeViable_RAPID.Value is Bool)
                 {
@@ -839,9 +844,11 @@ namespace PCSDKApplication
                             bool isTCPChangeViable = isTCPChangeViable_ABB.Value;
                             if (isTCPChangeViable)
                             {
+                                // Sending command to change TCP:
                                 changeTCPBool.Value = true;
                                 changeTCP_RAPID.Value = changeTCPBool;
-
+                                
+                                // Sending message to Unity client and updating UI:
                                 if (mainWindow.tcpServer.isConnected)
                                 {
                                     mainWindow.tcpServer.SendMessage("CHANGING_TCP");
@@ -854,6 +861,7 @@ namespace PCSDKApplication
                             else
                             {
 
+                                // Sending message to Unity client and updating UI about failure to change TCP position and orientation:
                                 mainWindow.pathViabilityLabelValue.Text = "U-F";
                                 if (mainWindow.tcpServer.isConnected)
                                 {
@@ -899,6 +907,8 @@ namespace PCSDKApplication
 
         public void completelyTraverseForward()
         {
+            /* Method to completely traverse forwards in the given path */
+
             SendDataParamsRAPID(0);
             SendDataParamsRAPID(1);
 
@@ -916,6 +926,7 @@ namespace PCSDKApplication
 
                         if (uas.CheckDemandGrant(Grant.ModifyRapidDataValue) && uas.CheckDemandGrant(Grant.ModifyRapidPosition))
                         {
+                            // Sending command to the RAPID program to initiate the forwards path traversal:
                             completePathTraversalBool.Value = true;
                             completeTraversal_RAPID.Value = completePathTraversalBool;
                         }
@@ -962,6 +973,7 @@ namespace PCSDKApplication
                     {
                         UserAuthorizationSystem uas = controller1.AuthenticationSystem;
 
+                        // Sending command to the RAPID program to initiate the backwards path traversal:
                         if (uas.CheckDemandGrant(Grant.ModifyRapidDataValue) && uas.CheckDemandGrant(Grant.ModifyRapidPosition))
                         {
                             completePathTraversalBackBool.Value = true;

@@ -1,0 +1,215 @@
+MODULE PointTraversal
+    PERS tooldata gripper := [TRUE, [[0,0,250],[1,0,0,0]],[1.25,[0,0,90],[1,0,0,0],0,0,0]]; ! gripper data   
+
+    VAR speeddata speedVals{10}:=[v50, v100, v150, v200, v300, v400, v500, v600, v800, v1000]; ! Array of speed values
+    VAR zonedata zoneVals{15}:=[fine, z0, z1, z5, z10, z15, z20, z30, z40, z50, z60, z80, z100, z150, z200]; ! Array of zone values
+
+    VAR num speedVal; ! Speed parameter index
+    VAR num zoneVal; ! Zone parameter index
+    
+    PERS pos tgPos{100};    ! Position array containing all Cartesian positions inputted by user
+    PERS orient tgRot{100};
+    VAR num targetsNum;    ! Total number of targets within the position array
+    
+    VAR num ptpIndex:=1; ! Represents the index of the NEXT point to traverse to
+    VAR robtarget initialPosPTP;
+    VAR bool isFirst:=FALSE;
+    VAR bool isCleared:=TRUE;
+    
+    VAR robtarget nextRobTarget;
+    VAR bool isTargetViableF:=FALSE;
+    VAR bool goForward:=FALSE;
+
+    VAR robtarget lastRobTarget;    
+    VAR bool isTargetViableB:=FALSE;
+    VAR bool goBackward:=FALSE;
+
+    VAR bool completeTraversal:=FALSE;
+    VAR bool isNextPointViable_CPT:=FALSE;
+    VAR bool whileLoopCPT := TRUE;
+
+    VAR bool completeTraversalBack:=FALSE;
+    VAR bool isNextPointViable_CPTB:=FALSE;
+    VAR robtarget nextRobTarg_CPTB;
+    VAR bool whileLoopCPTB := TRUE;
+    
+    VAR bool changeTCP:=FALSE;
+    VAR robtarget curRobTarget;
+    VAR bool isTCPChangeViable:=FALSE;
+    
+    VAR bool isHomePosReset:=FALSE;
+    
+    VAR string speedStr;    ! Speed parameter
+    VAR string zoneStr;    ! Zone parameter
+    VAR string moveCommand;    ! Move behavior (MoveJ vs MoveL vs etc.)
+    VAR jointtarget curJointPos;    ! Contains the corresponding joint angles for each given robtarget
+    VAR errnum errJoint;    ! Contains the error message (if any) produced by CalcJointT()
+
+    FUNC robtarget create_robtarget(pos position, orient rotation)
+        RETURN [position,rotation,[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+        !RETURN [position,[0.190808996,0,0.981627183,0],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    ENDFUNC
+
+    FUNC bool checkPointViability(robtarget cur_robtarget)
+        ! cur_robtarget - The next robtarget to potentially travel to
+
+        VAR jointtarget curJointPos;
+        ! Contains the corresponding joint angles for each given robtarget
+        VAR errnum errJoint;
+        ! Contains the error message (if any) produced by CalcJointT()
+        VAR bool isTargetViable:=TRUE;
+        ! Boolean indicating target viability (specific to the function only, not the global variable)
+
+        curJointPos:=CalcJointT(cur_robtarget,gripper\WObj:=wobj0\ErrorNumber:=errJoint);
+
+        ! Tests to see if current robtarget is within the joint limits of the robot:
+        IF errJoint=ERR_ROBLIMIT THEN
+            isTargetViable:=FALSE;
+        ELSEIF errJoint=ERR_OUTSIDE_REACH THEN
+            isTargetViable:=FALSE;
+        ELSEIF errJoint=ERR_WOBJ_MOVING THEN
+            isTargetViable:=FALSE;
+        ENDIF
+
+
+        RETURN isTargetViable;
+    ENDFUNC
+
+
+    ! Main method:
+    PROC main()
+        
+        ! Sets the initial position of the digital twin when program first starts:
+        IF isFirst THEN
+            !initialPosPTP:=CRobT(\Tool:=gripper\WObj:=wobj0);
+            MoveJ initialPosPTP,v1000,fine,gripper\WObj:=wobj0; ! Moves robot to same initial position as the real GoFa robot
+            isFirst := FALSE;
+        ENDIF
+        
+        ! Resets home position:
+        IF isHomePosReset THEN
+            initialPosPTP:=CRobT(\Tool:=gripper\WObj:=wobj0);            
+            isHomePosReset := FALSE;
+        ENDIF
+        
+        ! Resets initial position and ptpIndex if data is cleared:
+        IF isCleared THEN
+            initialPosPTP:=CRobT(\Tool:=gripper\WObj:=wobj0);
+            ptpIndex:=1;
+            isCleared:=FALSE;
+        ENDIF
+
+        ! Calculating previous robtarget:
+        IF (ptpIndex-2)=0 THEN
+            lastRobTarget:=initialPosPTP;
+            isTargetViableB:=checkPointViability(lastRobTarget);
+        ELSEIF (ptpIndex-2)>0 THEN
+            lastRobTarget:=create_robtarget(tgPos{ptpIndex-2}, tgRot{ptpIndex-2});
+            isTargetViableB:=checkPointViability(lastRobTarget);
+        ELSE
+            isTargetViableB:=FALSE;
+        ENDIF
+
+        ! Calculating next robtarget:
+        IF (ptpIndex<=targetsNum) THEN
+            nextRobTarget:=create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex});
+            isTargetViableF:=checkPointViability(nextRobTarget);
+        ELSE
+            isTargetViableF:=FALSE;
+        ENDIF
+
+        ! Calculating viability of rotation:
+        IF(ptpIndex > 1) THEN
+            curRobTarget:=create_robtarget(tgPos{ptpIndex-1}, tgRot{ptpIndex-1});
+            isTCPChangeViable:=checkPointViability(curRobTarget);
+        ELSE
+            isTCPChangeViable:=FALSE;
+        ENDIF
+        
+        
+        !!! Moving from point to point:
+
+        ! Going forwards:
+        IF goForward AND isTargetViableF THEN
+            MoveJ nextRobTarget,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
+            ptpIndex:=ptpIndex+1;
+            goForward:=FALSE;
+
+            ! Going backwards
+        ELSEIF goBackward AND isTargetViableB THEN
+            MoveJ lastRobTarget,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
+            ptpIndex:=ptpIndex-1;
+            goBackward:=FALSE;
+            
+        ! Changing TCP Orientation
+        ELSEIF changeTCP AND isTCPChangeViable THEN
+            MoveJ curRobTarget,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
+            changeTCP:=FALSE;
+            
+            ! Completing rest of path forwards
+        ELSEIF completeTraversal THEN
+
+            ! Looping forward through given targets:
+            WHILE(whileLoopCPT) DO
+                isNextPointViable_CPT := checkPointViability(create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex}));
+                
+                IF isNextPointViable_CPT THEN
+                    MoveJ create_robtarget(tgPos{ptpIndex}, tgRot{ptpIndex}),speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
+                    
+                    IF ptpIndex < targetsNum THEN
+                        ptpIndex := ptpIndex + 1; ! Incrementing the ptpIndex
+                    ELSEIF ptpIndex = targetsNum THEN
+                        ptpIndex := ptpIndex + 1;
+                        whileLoopCPT := FALSE;
+                    ENDIF
+                ELSE
+                    whileLoopCPT := FALSE;
+                ENDIF
+                 
+                isNextPointViable_CPT := FALSE; ! Resetting point viability boolean
+
+            ENDWHILE
+            
+            ! Resetting booleans:
+            whileLoopCPT := TRUE;
+            completeTraversal := FALSE;
+
+        ELSEIF completeTraversalBack THEN
+        
+            ! Looping forward through given targets:
+            WHILE(whileLoopCPTB) DO
+                
+                IF ptpIndex = 2 THEN
+                    nextRobTarg_CPTB := initialPosPTP;
+                ELSE
+                    nextRobTarg_CPTB := create_robtarget(tgPos{ptpIndex - 2}, tgRot{ptpIndex - 2});
+                ENDIF
+                
+                isNextPointViable_CPTB := checkPointViability(nextRobTarg_CPTB);
+                
+                IF isNextPointViable_CPTB THEN
+                    MoveJ nextRobTarg_CPTB,speedVals{speedVal+1},zoneVals{zoneVal+1},gripper\WObj:=wobj0;
+                    
+                    IF ptpIndex > 2 THEN
+                        ptpIndex := ptpIndex - 1; ! Incrementing the ptpIndex
+                    ELSEIF ptpIndex = 2 THEN
+                        ptpIndex := ptpIndex - 1;
+                        whileLoopCPTB := FALSE;
+                    ENDIF
+                ELSE
+                    whileLoopCPTB := FALSE;
+                ENDIF
+                 
+                isNextPointViable_CPTB := FALSE; ! Resetting point viability boolean
+
+            ENDWHILE
+            
+            ! Resetting booleans:
+            whileLoopCPTB := TRUE;
+            completeTraversalBack := FALSE;
+            
+        ENDIF
+
+    ENDPROC
+
+ENDMODULE

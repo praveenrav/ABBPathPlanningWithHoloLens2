@@ -22,6 +22,8 @@ namespace PCSDKApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /* Method to update the newly-inputted coordinate information to the coordinate listview */
+
             otherForm.positionListView.SelectedItems[0].SubItems[0].Text = xTextBox.Text;
             otherForm.positionListView.SelectedItems[0].SubItems[1].Text = yTextBox.Text;
             otherForm.positionListView.SelectedItems[0].SubItems[2].Text = zTextBox.Text;

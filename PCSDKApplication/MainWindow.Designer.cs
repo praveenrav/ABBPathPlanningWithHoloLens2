@@ -104,6 +104,8 @@ namespace PCSDKApplication
             this.contrConnectionStatus1 = new System.Windows.Forms.Label();
             this.controllerConnectionStatusLabel = new System.Windows.Forms.Label();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.changeTCPbutton = new System.Windows.Forms.Button();
+            this.setHomePosButton = new System.Windows.Forms.Button();
             this.DataPanel.SuspendLayout();
             this.TCPPanel.SuspendLayout();
             this.ControllerPanel.SuspendLayout();
@@ -175,6 +177,8 @@ namespace PCSDKApplication
             // DataPanel
             // 
             this.DataPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.DataPanel.Controls.Add(this.changeTCPbutton);
+            this.DataPanel.Controls.Add(this.setHomePosButton);
             this.DataPanel.Controls.Add(this.pointCounterLabelValue);
             this.DataPanel.Controls.Add(this.pointCounterLabel);
             this.DataPanel.Controls.Add(this.sendDataButton);
@@ -203,7 +207,7 @@ namespace PCSDKApplication
             this.DataPanel.Controls.Add(this.pathViabilityLabel);
             this.DataPanel.Location = new System.Drawing.Point(12, 540);
             this.DataPanel.Name = "DataPanel";
-            this.DataPanel.Size = new System.Drawing.Size(1476, 372);
+            this.DataPanel.Size = new System.Drawing.Size(1476, 384);
             this.DataPanel.TabIndex = 1;
             // 
             // pointCounterLabelValue
@@ -235,9 +239,9 @@ namespace PCSDKApplication
             this.sendDataButton.BackColor = System.Drawing.Color.Yellow;
             this.sendDataButton.Enabled = false;
             this.sendDataButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendDataButton.Location = new System.Drawing.Point(1102, 257);
+            this.sendDataButton.Location = new System.Drawing.Point(1102, 318);
             this.sendDataButton.Name = "sendDataButton";
-            this.sendDataButton.Size = new System.Drawing.Size(154, 88);
+            this.sendDataButton.Size = new System.Drawing.Size(154, 55);
             this.sendDataButton.TabIndex = 31;
             this.sendDataButton.Text = "Send Data";
             this.sendDataButton.UseVisualStyleBackColor = false;
@@ -248,9 +252,9 @@ namespace PCSDKApplication
             this.clearDataButton.BackColor = System.Drawing.Color.Magenta;
             this.clearDataButton.Enabled = false;
             this.clearDataButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearDataButton.Location = new System.Drawing.Point(1289, 257);
+            this.clearDataButton.Location = new System.Drawing.Point(1289, 318);
             this.clearDataButton.Name = "clearDataButton";
-            this.clearDataButton.Size = new System.Drawing.Size(154, 88);
+            this.clearDataButton.Size = new System.Drawing.Size(154, 55);
             this.clearDataButton.TabIndex = 30;
             this.clearDataButton.Text = "Clear Data";
             this.clearDataButton.UseVisualStyleBackColor = false;
@@ -898,17 +902,43 @@ namespace PCSDKApplication
             this.controllerConnectionStatusLabel.Text = "Controller Connection Status:";
             this.controllerConnectionStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // changeTCPbutton
+            // 
+            this.changeTCPbutton.BackColor = System.Drawing.Color.MediumPurple;
+            this.changeTCPbutton.Enabled = false;
+            this.changeTCPbutton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.changeTCPbutton.Location = new System.Drawing.Point(1102, 257);
+            this.changeTCPbutton.Name = "changeTCPbutton";
+            this.changeTCPbutton.Size = new System.Drawing.Size(154, 55);
+            this.changeTCPbutton.TabIndex = 35;
+            this.changeTCPbutton.Text = "Change TCP";
+            this.changeTCPbutton.UseVisualStyleBackColor = false;
+            this.changeTCPbutton.Click += new System.EventHandler(this.changeTCPbutton_Click);
+            // 
+            // setHomePosButton
+            // 
+            this.setHomePosButton.BackColor = System.Drawing.Color.SteelBlue;
+            this.setHomePosButton.Enabled = false;
+            this.setHomePosButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.setHomePosButton.Location = new System.Drawing.Point(1289, 257);
+            this.setHomePosButton.Name = "setHomePosButton";
+            this.setHomePosButton.Size = new System.Drawing.Size(154, 55);
+            this.setHomePosButton.TabIndex = 34;
+            this.setHomePosButton.Text = "Set Home Pos";
+            this.setHomePosButton.UseVisualStyleBackColor = false;
+            this.setHomePosButton.Click += new System.EventHandler(this.setHomePosButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1500, 924);
+            this.ClientSize = new System.Drawing.Size(1495, 936);
             this.Controls.Add(this.ControllerPanel);
             this.Controls.Add(this.TCPPanel);
             this.Controls.Add(this.DataPanel);
             this.Name = "MainWindow";
-            this.Text = "Network Scanning Window";
+            this.Text = "Windows Form Server";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.DataPanel.ResumeLayout(false);
             this.DataPanel.PerformLayout();
@@ -1001,6 +1031,8 @@ namespace PCSDKApplication
         public System.Windows.Forms.ColumnHeader columnHeader14;
         public System.Windows.Forms.Label pointCounterLabelValue;
         public System.Windows.Forms.Label pointCounterLabel;
+        public System.Windows.Forms.Button changeTCPbutton;
+        public System.Windows.Forms.Button setHomePosButton;
     }
 }
 
